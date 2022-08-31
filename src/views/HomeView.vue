@@ -1,18 +1,21 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <div class="main-view"><WidgetManager /></div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import WidgetManager from "@/components/widget/WidgetManager";
 
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
+    WidgetManager,
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.main-view {
+  width: 100%;
+  height: calc(100% - 56px);
+}
+</style>
