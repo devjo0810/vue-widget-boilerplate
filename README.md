@@ -1,4 +1,4 @@
-# window-boilerplate
+# vue-widget-boilerplate
 
 ## Project setup
 ```
