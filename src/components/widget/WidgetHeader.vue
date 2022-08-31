@@ -44,6 +44,7 @@ export default {
   height: 32px;
   background-color: #eeeeee;
   border-bottom: 1px solid #222831;
+  color: #222831;
   .widget-drag-handle {
     cursor: move;
     width: 100%;
@@ -64,6 +65,8 @@ export default {
       width: 32px;
       padding: 0;
       border: 0;
+      background-color: #eeeeee;
+      color: #222831;
       transition: all 0.3s ease;
       &:hover {
         background-color: #cccccc;
