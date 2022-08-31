@@ -1,5 +1,10 @@
 <template>
-  <div class="main-view"><WidgetManager /></div>
+  <div class="main-view">
+    <div class="main-widget-wrapper">
+      <WidgetManager />
+    </div>
+    <div class="minimize-widget-wrapper"></div>
+  </div>
 </template>
 
 <script>
@@ -13,9 +18,20 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .main-view {
   width: 100%;
   height: calc(100% - 56px);
+  .main-widget-wrapper {
+    width: 100%;
+    height: calc(100% - 36px);
+    background-color: #ffffff;
+  }
+  .minimize-widget-wrapper {
+    width: 100%;
+    height: 36px;
+    background-color: #eeeeee;
+    border-top: 2px solid #00adb5;
+  }
 }
 </style>

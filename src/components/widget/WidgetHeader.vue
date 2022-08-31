@@ -43,6 +43,7 @@ export default {
   width: 100%;
   height: 32px;
   background-color: #eeeeee;
+  border-bottom: 1px solid #222831;
   .widget-drag-handle {
     cursor: move;
     width: 100%;

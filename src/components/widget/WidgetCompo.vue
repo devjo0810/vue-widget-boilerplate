@@ -9,10 +9,10 @@
     :drag-handle="dragHandle"
     :active.sync="widgetActive"
     :prevent-deactivation="true"
-    :x="x"
-    :y="y"
     :w="w"
     :h="h"
+    :x="x"
+    :y="y"
     :z="zindex"
     :draggable="!isFullSize"
     :resizable="!isFullSize"
@@ -187,7 +187,7 @@ export default {
 <style lang="scss">
 .widget-component {
   background-color: #ffffff;
-  border: 1px solid #000000;
+  border: 1px solid #222831;
 }
 .handle {
   width: 8px;

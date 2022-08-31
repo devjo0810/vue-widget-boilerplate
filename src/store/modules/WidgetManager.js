@@ -91,15 +91,20 @@ const actions = {
     commit("setNextWidgetPosition");
   },
   // 위젯 zindex값 정렬
-  // 알고리즘 재정의 필요...
   orderWidgetZindex({ state, commit }, id) {
     const maxZindex = getMaxZindex(state);
-    const maxZindexWidget = state.widgetList.find(
+    const maxZindexId = state.widgetList.find(
       (item) => item.zindex === maxZindex
-    );
-    if (id === maxZindexWidget.id) return;
+    ).id;
+    if (id === maxZindexId) return;
+
+    const currentZindex = state.widgetList.find(
+      (item) => item.id === id
+    ).zindex;
     commit("setWidget", { id, zindex: maxZindex });
-    const decreWidgetList = state.widgetList.filter((item) => item.id !== id);
+    const decreWidgetList = state.widgetList.filter(
+      (item) => item.id !== id && item.zindex > currentZindex
+    );
     for (const widget of decreWidgetList) {
       commit("setWidget", { id: widget.id, zindex: widget.zindex - 1 });
     }
@@ -112,7 +117,7 @@ const actions = {
   fullSizingWidget({ commit, dispatch }, { id, w, h }) {
     dispatch("orderWidgetZindex", id);
     commit("saveBfPositionAndSize", { id });
-    commit("setWidget", { id, w, h, isFullSize: true, x: 1, y: 1 });
+    commit("setWidget", { id, w, h, isFullSize: true, x: 0, y: 0 });
   },
   // 위젯 분할화면
   smallSizingWidget({ state, commit, dispatch }, id) {

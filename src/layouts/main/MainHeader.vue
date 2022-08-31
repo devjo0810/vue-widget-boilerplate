@@ -63,6 +63,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 3px solid #00adb5;
 
   .left-section {
     display: flex;

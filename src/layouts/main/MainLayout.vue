@@ -2,7 +2,6 @@
   <div class="main-layout">
     <MainHeader />
     <router-view />
-    layout
   </div>
 </template>
 
