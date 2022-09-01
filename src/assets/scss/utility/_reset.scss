@@ -4,10 +4,12 @@
 
 html {
   overflow: auto;
-  font-size: 62.5%; /* 10px = 1rem */
+  font-size: 62.5%;
+  /* 10px = 1rem */
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -21,6 +23,14 @@ body {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: inherit;
 }
 
 p {

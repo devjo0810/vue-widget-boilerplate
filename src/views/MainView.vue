@@ -32,8 +32,7 @@ export default {
   .minimize-widget-wrapper {
     width: 100%;
     height: 36px;
-    background-color: #eeeeee;
-    border-top: 2px solid #00adb5;
+    background-color: #222831;
   }
 }
 </style>

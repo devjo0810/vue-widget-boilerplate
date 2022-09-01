@@ -12,7 +12,7 @@
  * bfY : 이전 y좌표
  * bfW : 이전 width
  * bfH : 이전 height
- * zindex
+ * zindex : 위젯 order index
  * isOnlyOne : 위젯 전체중 한개만 유지여부
  * isFullSize : 전체스크린 여부
  * isMinimize : 최소화 여부
@@ -24,11 +24,22 @@ const state = {
     x: 10,
     y: 10,
   },
+  isParent: true,
 };
 
 const getters = {
   getWidgetList(state) {
     return state.widgetList;
+  },
+  getWidgetById: (state) => (id) => {
+    return state.widgetList.find((item) => item.id === id);
+  },
+  getMaxZindexId(state) {
+    const maxZindex = getMaxZindex(state);
+    return state.widgetList.find((item) => item.zindex === maxZindex).id;
+  },
+  getIsParent(state) {
+    return state.isParent;
   },
 };
 
@@ -49,15 +60,17 @@ const mutations = {
   },
   addWidget(state, widget) {
     state.widgetList.push({
-      id: createWidgetKey(),
-      zindex: getNextZindex(state),
-      x: state.widgetPosition.x,
-      y: state.widgetPosition.y,
+      w: 300,
+      h: 300,
       isOnlyOne: false,
       isFullSize: false,
       isMinimize: false,
       isWindowPopup: false,
       ...widget,
+      id: createWidgetKey(),
+      zindex: getNextZindex(state),
+      x: state.widgetPosition.x,
+      y: state.widgetPosition.y,
     });
   },
   setWidget(state, { id, ...props }) {
@@ -65,10 +78,6 @@ const mutations = {
     Object.keys(props).forEach((key) => {
       widget[key] = props[key];
     });
-    // for (const prop in props) {
-    //   console.log('prop key :', prop, ', value :', props[prop])
-    //   widget[prop] = props[prop]
-    // }
   },
   delWidget(state, { id }) {
     const widgetIndex = state.widgetList.findIndex((item) => item.id === id);
@@ -82,16 +91,29 @@ const mutations = {
     widget.bfW = w;
     widget.bfH = h;
   },
+  setIsParent(state, isParent) {
+    state.isParent = isParent;
+  },
 };
 
 const actions = {
   // 위젯 생성
-  createWidget({ commit }, widgetOption) {
+  createWidget({ state, commit, dispatch }, widgetOption) {
+    const { isOnlyOne, compoName } = widgetOption;
+    // onlyOne 옵션이 있는 컴포넌트일 경우 기존 위젯 종료후 생성
+    if (isOnlyOne) {
+      const widget = state.widgetList.find(
+        (item) => item.compoName === compoName
+      );
+      if (widget) {
+        dispatch("closeWidget", widget.id);
+      }
+    }
     commit("addWidget", widgetOption);
     commit("setNextWidgetPosition");
   },
   // 위젯 zindex값 정렬
-  orderWidgetZindex({ state, commit }, id) {
+  sortWidgetZindex({ state, commit }, id) {
     const maxZindex = getMaxZindex(state);
     const maxZindexId = state.widgetList.find(
       (item) => item.zindex === maxZindex
@@ -109,19 +131,55 @@ const actions = {
       commit("setWidget", { id: widget.id, zindex: widget.zindex - 1 });
     }
   },
+  // 위젯 zindex값 정렬 역순
+  sortWidgetZindexReverse({ state, commit }, id) {
+    const minZindex = getMinZindex(state);
+    const minZindexId = state.widgetList.find(
+      (item) => item.zindex === minZindex
+    ).id;
+    if (id === minZindexId) return;
+
+    const currentZindex = state.widgetList.find(
+      (item) => item.id === id
+    ).zindex;
+    commit("setWidget", { id, zindex: minZindex });
+    const increWidgetList = state.widgetList.filter(
+      (item) => item.id !== id && item.zindex < currentZindex
+    );
+    for (const widget of increWidgetList) {
+      commit("setWidget", { id: widget.id, zindex: widget.zindex + 1 });
+    }
+  },
   // 위젯 종료
   closeWidget({ commit }, id) {
+    const currentZindex = state.widgetList.find(
+      (item) => item.id === id
+    ).zindex;
     commit("delWidget", { id });
+    const decreWidgetList = state.widgetList.filter(
+      (item) => item.zindex > currentZindex
+    );
+    for (const widget of decreWidgetList) {
+      commit("setWidget", { id: widget.id, zindex: widget.zindex - 1 });
+    }
   },
   // 위젯 전체화면
   fullSizingWidget({ commit, dispatch }, { id, w, h }) {
-    dispatch("orderWidgetZindex", id);
+    dispatch("sortWidgetZindex", id);
     commit("saveBfPositionAndSize", { id });
-    commit("setWidget", { id, w, h, isFullSize: true, x: 0, y: 0 });
+    commit("setWidget", {
+      id,
+      w,
+      h,
+      isFullSize: true,
+      isMinimize: false,
+      x: 0,
+      y: 0,
+    });
   },
-  // 위젯 분할화면
+  // 위젯 창화면
   smallSizingWidget({ state, commit, dispatch }, id) {
-    dispatch("orderWidgetZindex", id);
+    dispatch("sortWidgetZindex", id);
     const { bfX, bfY, bfW, bfH } = loadBfPositionAndSize(state, id);
     // 위치는 이전으로 안돌아감..
     commit("setWidget", {
@@ -135,26 +193,42 @@ const actions = {
   },
   // 위젯 위치 업데이트
   updateWidgetPosition({ commit, dispatch }, { id, x, y }) {
-    dispatch("orderWidgetZindex", id);
+    dispatch("sortWidgetZindex", id);
     commit("setWidget", { id, x, y });
   },
   // 위젯 사이즈 및 위치 업데이트
   updateWidgetSize({ commit, dispatch }, { id, x, y, w, h }) {
-    dispatch("orderWidgetZindex", id);
+    dispatch("sortWidgetZindex", id);
     commit("setWidget", { id, x, y, w, h });
   },
   // 위젯 최소화
   minimizingWidget({ commit }, id) {
+    // dispatch("sortWidgetZindexReverse", id);
     commit("setWidget", { id, isMinimize: true });
   },
   // 위젯 최소화 취소
-  cancelMinimizingWidget({ commit }, id) {
+  cancelMinimizingWidget({ commit, dispatch }, id) {
+    dispatch("sortWidgetZindex", id);
     commit("setWidget", { id, isMinimize: false });
+  },
+  // 위젯 최소화 토글링
+  toggleMinimizingWidget({ state, dispatch }, id) {
+    const isMinimize = state.widgetList.find(
+      (item) => item.id === id
+    ).isMinimize;
+    if (isMinimize) {
+      dispatch("cancelMinimizingWidget", id);
+    } else {
+      dispatch("minimizingWidget", id);
+    }
   },
   // 위젯 초기화
   initWidget({ commit }) {
     commit("initWidgetList");
     commit("initWidgetPosition");
+  },
+  toggleWidgetParent({ state, commit }) {
+    commit("setIsParent", !state.isParent);
   },
 };
 
@@ -172,6 +246,12 @@ function getMaxZindex(state) {
 // 위젯 다음 zindex값 조회
 function getNextZindex(state) {
   return getMaxZindex(state) + 1;
+}
+
+// 위젯 zindex 최소값 조회
+function getMinZindex(state) {
+  const zindexList = state.widgetList.map((item) => item.zindex);
+  return zindexList.length ? Math.min(...zindexList) : 0;
 }
 
 // 위젯 이전 위치 및 사이즈 불러오기

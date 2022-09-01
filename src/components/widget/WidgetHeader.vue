@@ -61,6 +61,7 @@ export default {
     height: 100%;
     font-size: 1.1rem;
     button {
+      cursor: pointer;
       height: 100%;
       width: 32px;
       padding: 0;

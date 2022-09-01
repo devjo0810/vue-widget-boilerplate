@@ -1,8 +1,42 @@
-const state = {};
+const sampleMenuList = [
+  {
+    title: "Signup",
+    compoName: "Signup",
+  },
+  {
+    title: "Grid",
+    compoName: "Grid",
+  },
+  {
+    title: "Tree",
+    compoName: "Tree",
+  },
+  {
+    title: "Card",
+    compoName: "Card",
+  },
+  {
+    title: "TextEllipsisTitleTest_ABCDE",
+    compoName: "TextEllipsisTitleTest",
+    isOnlyOne: true,
+  },
+];
 
-const getters = {};
+const state = {
+  widgetMenuList: [...sampleMenuList],
+};
 
-const mutations = {};
+const getters = {
+  getWidgetMenuList(state) {
+    return state.widgetMenuList;
+  },
+};
+
+const mutations = {
+  setWidgetMenuList(state, widgetMenuList) {
+    state.widgetMenuList = [...widgetMenuList];
+  },
+};
 
 const actions = {};
 

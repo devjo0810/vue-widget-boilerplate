@@ -2,14 +2,12 @@
   <div class="minimize-widget-manager">
     <div
       class="minimize-widget"
-      v-for="item in minimizeWidgetList"
+      v-for="item in widgetList"
       :key="item.id"
-      @click="cancelMinimizingWidget(item.id)"
+      :class="{ active: item.id === maxZindexId && !item.isMinimize }"
+      @mousedown.left="toggleMinimizingWidget(item.id)"
     >
       <p>{{ item.title }}</p>
-      <button @click="closeWidget(item.id)">
-        <font-awesome-icon icon="xmark" />
-      </button>
     </div>
   </div>
 </template>
@@ -22,6 +20,7 @@ export default {
   computed: {
     ...mapGetters({
       widgetList: "WidgetManager/getWidgetList",
+      maxZindexId: "WidgetManager/getMaxZindexId",
     }),
     minimizeWidgetList() {
       const widgetList = this.widgetList;
@@ -30,8 +29,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      cancelMinimizingWidget: "WidgetManager/cancelMinimizingWidget",
-      closeWidget: "WidgetManager/closeWidget",
+      toggleMinimizingWidget: "WidgetManager/toggleMinimizingWidget",
     }),
   },
 };
@@ -43,24 +41,29 @@ export default {
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 1px;
   .minimize-widget {
-    min-width: 80px;
+    margin-right: 3px;
+    height: 100%;
+    width: 100px;
     cursor: pointer;
-    margin-right: 5px;
-    padding: 3px;
     display: flex;
     align-items: center;
     background-color: #222831;
+    border-bottom: 2px solid #00adb5;
     color: #ffffff;
-    button {
-      border: 0;
-      margin: 0;
-      padding: 0;
-      margin-left: auto;
-      cursor: pointer;
-      background-color: #222831;
-      color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    &.active {
+      background-color: #484d55;
+    }
+    &:hover {
+      background-color: #484d55;
+    }
+    p {
+      padding: 0 3px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
   }
 }

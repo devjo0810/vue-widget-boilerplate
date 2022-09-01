@@ -3,7 +3,7 @@
     v-show="!isMinimize"
     ref="widget"
     class="widget-component"
-    :parent="parent"
+    :parent="isParnet"
     :min-width="widgetMinWidth"
     :min-height="widgetMinHeight"
     :drag-handle="dragHandle"
@@ -41,7 +41,7 @@ import WidgetHeader from "./WidgetHeader";
 import WidgetBody from "./WidgetBody";
 import VueDraggableResizable from "vue-draggable-resizable";
 import { WIDGET } from "@/config";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "WidgetWrapper",
@@ -51,11 +51,6 @@ export default {
     WidgetBody,
   },
   props: {
-    parent: {
-      // 부모창 의존 여부
-      type: Boolean,
-      default: true,
-    },
     dragHandle: {
       // 위젯 핸들링 클래스명
       type: String,
@@ -120,10 +115,12 @@ export default {
   data: () => ({
     widgetMinWidth: WIDGET.MIN_WIDTH,
     widgetMinHeight: WIDGET.MIN_HEIGHT,
-    widgetHandles: WIDGET.HANDLES,
     widgetActive: false,
   }),
   computed: {
+    ...mapGetters({
+      isParnet: "WidgetManager/getIsParent",
+    }),
     parentWidth() {
       const widget = this.$refs.widget;
       return widget.parentWidth;
@@ -135,7 +132,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      orderWidgetZindexAction: "WidgetManager/orderWidgetZindex",
+      sortWidgetZindexAction: "WidgetManager/sortWidgetZindex",
       fullSizingWidgetAction: "WidgetManager/fullSizingWidget",
       smallSizingWidgetAction: "WidgetManager/smallSizingWidget",
       closeWidgetAction: "WidgetManager/closeWidget",
@@ -144,11 +141,11 @@ export default {
       minimizingWidgetAction: "WidgetManager/minimizingWidget",
     }),
     handleWidgetHeaderClick() {
-      this.orderWidgetZindexAction(this.id);
+      this.sortWidgetZindexAction(this.id);
     },
     handleWidgetBodyClick() {
       this.handleWidgetActive(true);
-      this.orderWidgetZindexAction(this.id);
+      this.sortWidgetZindexAction(this.id);
     },
     handleWidgetActive(isActive) {
       this.widgetActive = isActive;
