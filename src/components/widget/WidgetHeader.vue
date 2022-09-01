@@ -61,16 +61,12 @@ export default {
     height: 100%;
     font-size: 1.1rem;
     button {
-      cursor: pointer;
       height: 100%;
       width: 32px;
-      padding: 0;
-      border: 0;
-      background-color: #eeeeee;
       color: #222831;
       transition: all 0.3s ease;
       &:hover {
-        background-color: #cccccc;
+        background-color: #aaaaaa;
       }
     }
   }

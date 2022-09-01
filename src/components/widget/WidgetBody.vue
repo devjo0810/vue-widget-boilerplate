@@ -43,7 +43,6 @@ export default {
 
 <style lang="scss">
 .widget-body {
-  padding: 8px;
   width: 100%;
   height: calc(100% - 32px);
 }

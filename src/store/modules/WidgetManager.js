@@ -36,10 +36,14 @@ const getters = {
   },
   getMaxZindexId(state) {
     const maxZindex = getMaxZindex(state);
-    return state.widgetList.find((item) => item.zindex === maxZindex).id;
+    const widget = state.widgetList.find((item) => item.zindex === maxZindex);
+    return widget ? widget.id : null;
   },
   getIsParent(state) {
     return state.isParent;
+  },
+  getWidgetPosition(state) {
+    return state.widgetPosition;
   },
 };
 
@@ -203,7 +207,6 @@ const actions = {
   },
   // 위젯 최소화
   minimizingWidget({ commit }, id) {
-    // dispatch("sortWidgetZindexReverse", id);
     commit("setWidget", { id, isMinimize: true });
   },
   // 위젯 최소화 취소
@@ -213,9 +216,15 @@ const actions = {
   },
   // 위젯 최소화 토글링
   toggleMinimizingWidget({ state, dispatch }, id) {
-    const isMinimize = state.widgetList.find(
-      (item) => item.id === id
-    ).isMinimize;
+    const maxZindex = getMaxZindex(state);
+    const widget = state.widgetList.find((item) => item.id === id);
+    const { isMinimize, zindex } = widget;
+    // 최상단 위젯이 아닐경우 위로올림
+    if (maxZindex !== zindex) {
+      dispatch("sortWidgetZindex", id);
+      return;
+    }
+    // 위젯 토글링
     if (isMinimize) {
       dispatch("cancelMinimizingWidget", id);
     } else {

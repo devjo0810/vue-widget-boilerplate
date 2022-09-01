@@ -3,6 +3,7 @@
     v-show="!isMinimize"
     ref="widget"
     class="widget-component"
+    :class="{ top: id === maxZindexId }"
     :parent="isParnet"
     :min-width="widgetMinWidth"
     :min-height="widgetMinHeight"
@@ -120,6 +121,7 @@ export default {
   computed: {
     ...mapGetters({
       isParnet: "WidgetManager/getIsParent",
+      maxZindexId: "WidgetManager/getMaxZindexId",
     }),
     parentWidth() {
       const widget = this.$refs.widget;
@@ -185,6 +187,11 @@ export default {
 .widget-component {
   background-color: #ffffff;
   border: 1px solid #222831;
+  &.top {
+    .widget-header {
+      background-color: #cccccc;
+    }
+  }
 }
 .handle {
   width: 8px;

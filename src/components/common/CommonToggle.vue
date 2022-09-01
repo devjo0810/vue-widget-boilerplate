@@ -1,8 +1,8 @@
 <template>
   <button
     class="common-toggle-button"
-    :class="active"
-    @click="$emit('click', !active)"
+    :class="{ active: value }"
+    @click="$emit('click', !value)"
   >
     {{ buttonText }}
   </button>
@@ -12,7 +12,7 @@
 export default {
   name: "CommonToggle",
   props: {
-    active: {
+    value: {
       type: Boolean,
       required: true,
     },
@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     buttonText() {
-      return this.active ? this.activeText : this.passiveText;
+      return this.value ? this.activeText : this.passiveText;
     },
   },
 };
@@ -35,5 +35,19 @@ export default {
 
 <style lang="scss">
 .common-toggle-button {
+  width: 50px;
+  height: 26px;
+  border-radius: 13px;
+  background-color: #cccccc;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #aaaaaa;
+  font-weight: 600;
+  &.active {
+    background-color: #00adb5;
+    color: #eeeeee;
+    &:hover {
+      background-color: #009198;
+    }
+  }
 }
 </style>

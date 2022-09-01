@@ -7,8 +7,9 @@ import {
   faMaximize,
   faMinimize,
   faGear,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-library.add(faWindowMinimize, faXmark, faMaximize, faMinimize, faGear);
+library.add(faWindowMinimize, faXmark, faMaximize, faMinimize, faGear, faTrash);
 Vue.component("font-awesome-icon", FontAwesomeIcon);

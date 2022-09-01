@@ -6,7 +6,7 @@
         :key="i"
         @click="createWidget(item)"
       >
-        {{ item.title }}
+        <span>{{ item.title }}</span>
       </li>
     </ul>
     <section class="right-section">
@@ -57,10 +57,19 @@ export default {
     margin: 0;
     padding: 0;
     font-size: 1.3rem;
+    height: 100%;
     li {
+      height: 100%;
       list-style: none;
-      margin-right: 5px;
       cursor: pointer;
+      padding: 0 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background-color: #484d55;
+      }
     }
   }
 
