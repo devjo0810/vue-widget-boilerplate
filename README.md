@@ -49,7 +49,7 @@ npm run lint
 
 ---
 
-[Live Demo](https://localhost:8080/)
+[Live Demo](http://132.226.227.191:8080/)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
