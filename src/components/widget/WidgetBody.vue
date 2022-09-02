@@ -45,5 +45,6 @@ export default {
 .widget-body {
   width: 100%;
   height: calc(100% - 32px);
+  overflow: auto;
 }
 </style>
