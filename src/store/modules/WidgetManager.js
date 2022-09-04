@@ -222,6 +222,7 @@ const actions = {
     // 최상단 위젯이 아닐경우 위로올림
     if (maxZindex !== zindex) {
       dispatch("sortWidgetZindex", id);
+      dispatch("cancelMinimizingWidget", id);
       return;
     }
     // 위젯 토글링
