@@ -17,6 +17,7 @@
  * isFullSize : 전체스크린 여부
  * isMinimize : 최소화 여부
  * isWindowPopup : 윈도우 팝업 여부
+ * spinner : spinner on/off
  */
 const state = {
   widgetList: [],
@@ -70,6 +71,7 @@ const mutations = {
       isFullSize: false,
       isMinimize: false,
       isWindowPopup: false,
+      spinner: false,
       ...widget,
       id: createWidgetKey(),
       zindex: getNextZindex(state),
@@ -100,9 +102,7 @@ const mutations = {
   },
   setSpinner(state, { id, spinner }) {
     const widget = state.widgetList.find((item) => item.id === id);
-    if (widget.compoData) {
-      widget.compoData.spinner = spinner;
-    }
+    widget.spinner = spinner;
   },
 };
 

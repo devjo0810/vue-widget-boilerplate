@@ -10,7 +10,7 @@
 <script>
 import CommonSpinnerWrapper from "@/components/common/CommonSpinnerWrapper.vue";
 import CommonSpinner1 from "@/components/common/CommonSpinner1.vue";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "WidgetMenuNotFound",
@@ -21,10 +21,16 @@ export default {
   props: {
     compoId: {
       type: String,
+      required: true,
     },
-    spinner: {
-      type: Boolean,
-      default: false,
+  },
+  computed: {
+    ...mapGetters({
+      widgetList: "WidgetManager/getWidgetList",
+    }),
+    spinner() {
+      const widget = this.widgetList.find((item) => item.id === this.compoId);
+      return widget.spinner;
     },
   },
   methods: {
