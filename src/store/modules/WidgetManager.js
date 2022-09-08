@@ -98,6 +98,12 @@ const mutations = {
   setIsParent(state, isParent) {
     state.isParent = isParent;
   },
+  setSpinner(state, { id, spinner }) {
+    const widget = state.widgetList.find((item) => item.id === id);
+    if (widget.compoData) {
+      widget.compoData.spinner = spinner;
+    }
+  },
 };
 
 const actions = {
@@ -231,6 +237,12 @@ const actions = {
     } else {
       dispatch("minimizingWidget", id);
     }
+  },
+  onSpinner({ commit }, id) {
+    commit("setSpinner", { id, spinner: true });
+  },
+  offSpinner({ commit }, id) {
+    commit("setSpinner", { id, spinner: false });
   },
   // 위젯 초기화
   initWidget({ commit }) {

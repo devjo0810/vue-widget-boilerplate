@@ -1,6 +1,11 @@
 <template>
   <div class="widget-body" @click="$emit('widgetBodyClick')">
-    <component v-if="component" :is="component" v-bind="compoData" />
+    <component
+      v-if="component"
+      :is="component"
+      v-bind="compoData"
+      :compoId="compoId"
+    />
   </div>
 </template>
 
@@ -18,6 +23,11 @@ export default {
     Tree: () => import("./menus/WidgetMenuTree"),
   },
   props: {
+    compoId: {
+      // 컴포넌트 고유 Id
+      type: String,
+      required: true,
+    },
     compoName: {
       // Widget 컴포넌트명
       type: String,
@@ -43,6 +53,8 @@ export default {
 
 <style lang="scss">
 .widget-body {
+  position: relative;
+  z-index: 0;
   width: 100%;
   height: calc(100% - 32px);
   overflow: auto;

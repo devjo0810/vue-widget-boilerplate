@@ -30,6 +30,7 @@
       @closeWidget="handleCloseWidget"
     />
     <WidgetBody
+      :compoId="id"
       :compoName="compoName"
       :compoData="compoData"
       @widgetBodyClick="handleWidgetHeaderClick"
