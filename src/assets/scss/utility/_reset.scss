@@ -16,9 +16,17 @@ body {
 }
 
 body {
-  font-family: "Noto Sans KR", sans-serif, "맑은고딕", "malgun gothic", "AppleGothic", "돋움", "dotum", Helvetica, Arial;
   background: #fcfcfc;
   min-width: 820px;
+}
+
+body,
+button,
+input[type=text],
+input[type=number],
+input[type=password],
+select {
+  font-family: "Noto Sans KR", sans-serif, "맑은고딕", "malgun gothic", "AppleGothic", "돋움", "dotum", Helvetica, Arial;
 }
 
 table {
@@ -32,6 +40,19 @@ button {
   border: 0;
   cursor: pointer;
   background-color: inherit;
+}
+
+input[type=text],
+input[type=number],
+input[type=password],
+select {
+  margin: 0;
+  padding: 0;
+  border: 0 solid black;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 p {
