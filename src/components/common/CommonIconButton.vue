@@ -23,7 +23,7 @@ export default {
 <style lang="scss">
 .common-icon-button {
   background-color: map-get($colors, "point");
-  color: #eeeeee;
+  color: map-get($colors, "white");
   width: 50px;
   height: 26px;
   border-radius: 13px;

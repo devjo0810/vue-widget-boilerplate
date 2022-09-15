@@ -53,6 +53,8 @@ select {
   border-radius: none;
   background-color: inherit;
   color: inherit;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
 
   &:focus-visible {
     outline: none;

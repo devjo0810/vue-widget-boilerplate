@@ -65,6 +65,7 @@ export default {
     .header {
       display: flex;
       margin-bottom: 20px;
+      color: map-get($colors, "black");
       p {
         font-size: 1.5rem;
         font-weight: 500;
