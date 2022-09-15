@@ -49,7 +49,7 @@ npm run lint
 
 ---
 
-[Live Demo](https://devjo0810.github.io/vue-widget-boilerplate/)
+[Live Demo](https://devjo0810.github.io/vue-widget-boilerplate/#)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
