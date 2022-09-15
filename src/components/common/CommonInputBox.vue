@@ -1,7 +1,7 @@
 <template>
   <div class="common-input-box">
-    <span>{{ label }}</span
-    ><input
+    <span v-if="!!label">{{ label }}</span>
+    <input
       :type="type"
       :value="value"
       @input="$emit('input', $event.target.value)"

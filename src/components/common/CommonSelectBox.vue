@@ -1,6 +1,6 @@
 <template>
   <div class="common-select-box">
-    <span>{{ label }}</span>
+    <span v-if="!!label">{{ label }}</span>
     <select :value="value" @input="$emit('input', $event.target.value)">
       <option
         v-for="(optionItem, i) in displayItems"

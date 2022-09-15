@@ -28,6 +28,8 @@
       @fullSizeWidget="handleFullSizeWidget"
       @smallSizeWidget="handleSmallSizeWidget"
       @closeWidget="handleCloseWidget"
+      @leftSideWidget="handleLeftSideWidget"
+      @rightSideWidget="handleRightSideWidget"
     />
     <WidgetBody
       :compoId="id"
@@ -173,12 +175,31 @@ export default {
     handleDragging(x, y) {
       const params = { id: this.id, x, y };
       this.updateWidgetPositionAction(params);
-      // console.log('handleDragging', x, y)
     },
     handleResizing(x, y, w, h) {
       const params = { id: this.id, x, y, w, h };
       this.updateWidgetSizeAction(params);
-      // console.log('handleResizing', x, y, w, h)
+    },
+    handleLeftSideWidget() {
+      const params = {
+        id: this.id,
+        x: 0,
+        y: 0,
+        w: this.parentWidth / 2,
+        h: this.parentHeight,
+      };
+      this.updateWidgetSizeAction(params);
+    },
+    handleRightSideWidget() {
+      const halfWidth = this.parentWidth / 2;
+      const params = {
+        id: this.id,
+        x: halfWidth,
+        y: 0,
+        w: halfWidth,
+        h: this.parentHeight,
+      };
+      this.updateWidgetSizeAction(params);
     },
   },
 };

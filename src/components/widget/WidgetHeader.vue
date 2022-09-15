@@ -4,6 +4,12 @@
       <p>{{ title }}</p>
     </section>
     <section class="btn-section">
+      <button @click="$emit('leftSideWidget')">
+        <font-awesome-icon icon="caret-left" />
+      </button>
+      <button @click="$emit('rightSideWidget')">
+        <font-awesome-icon icon="caret-right" />
+      </button>
       <button @click="$emit('minimizeWidget')">
         <font-awesome-icon icon="window-minimize" />
       </button>
