@@ -47,10 +47,10 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
-  height: 32px;
-  background-color: #eeeeee;
-  border-bottom: 1px solid #222831;
-  color: #222831;
+  height: map-get($widget, "widget-header-height");
+  background-color: map-get($colors, "white");
+  border-bottom: 1px solid map-get($colors, "black");
+  color: map-get($colors, "black");
   .widget-drag-handle {
     cursor: move;
     width: 100%;
@@ -68,11 +68,11 @@ export default {
     font-size: 1.1rem;
     button {
       height: 100%;
-      width: 32px;
-      color: #222831;
+      width: map-get($widget, "widget-header-height");
+      color: map-get($colors, "black");
       transition: all 0.3s ease;
       &:hover {
-        background-color: #aaaaaa;
+        background-color: map-get($colors, "white-darken2");
       }
     }
   }

@@ -42,14 +42,14 @@ export default {
 <style lang="scss">
 .main-header {
   width: 100%;
-  height: 56px;
+  height: map-get($main-layout, "header-height");
   padding: 0 3vw;
-  background-color: #222831;
-  color: #eeeeee;
+  background-color: map-get($colors, "black");
+  color: map-get($colors, "white");
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 3px solid #00adb5;
+  border-bottom: 3px solid map-get($colors, "point");
 
   .left-section {
     display: flex;
@@ -59,16 +59,15 @@ export default {
     font-size: 1.3rem;
     height: 100%;
     li {
+      @include flex-center;
+      @include overflow-ellipsis;
       height: 100%;
-      list-style: none;
+      width: 80px;
       cursor: pointer;
       padding: 0 5px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       transition: all 0.2s ease-in-out;
       &:hover {
-        background-color: #484d55;
+        background-color: map-get($colors, "black-lighten2");
       }
     }
   }

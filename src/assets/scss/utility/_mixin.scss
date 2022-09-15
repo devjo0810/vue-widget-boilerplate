@@ -26,6 +26,7 @@
 
 @mixin list-margin-right($margin) {
     margin-right: $margin;
+
     &:last-child {
         margin-right: 0;
     }
@@ -33,7 +34,24 @@
 
 @mixin list-margin-bottom($margin) {
     margin-bottom: $margin;
+
     &:last-child {
         margin-bottom: 0;
     }
+}
+
+@mixin overflow-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@mixin fixed-cover($z-index) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: $z-index;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
 }

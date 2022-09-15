@@ -56,7 +56,7 @@ export default {
   position: relative;
   z-index: 0;
   width: 100%;
-  height: calc(100% - 32px);
+  height: calc(100% - map-get($widget, "widget-header-height"));
   overflow: auto;
 }
 </style>

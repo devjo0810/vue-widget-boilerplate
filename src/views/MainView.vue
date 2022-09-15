@@ -23,16 +23,16 @@ export default {
 <style lang="scss">
 .main-view {
   width: 100%;
-  height: calc(100% - 56px);
+  height: calc(100% - map-get($main-layout, "header-height"));
   .main-widget-wrapper {
     width: 100%;
-    height: calc(100% - 36px);
-    background-color: #ffffff;
+    height: calc(100% - map-get($widget, "minimize-wrapper-height"));
+    background-color: map-get($colors, "white-lighten1");
   }
   .minimize-widget-wrapper {
     width: 100%;
-    height: 36px;
-    background-color: #222831;
+    height: map-get($widget, "minimize-wrapper-height");
+    background-color: map-get($colors, "black");
   }
 }
 </style>

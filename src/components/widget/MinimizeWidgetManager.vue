@@ -45,25 +45,23 @@ export default {
   .minimize-widget {
     margin-right: 3px;
     height: 100%;
-    width: 100px;
+    width: map-get($widget, "minimize-widget-width");
     cursor: pointer;
     display: flex;
     align-items: center;
-    background-color: #222831;
-    border-bottom: 2px solid #00adb5;
-    color: #ffffff;
+    background-color: map-get($colors, "black");
+    border-bottom: 2px solid map-get($colors, "point");
+    color: map-get($colors, "white-lighten1");
     transition: all 0.2s ease-in-out;
     &.active {
-      background-color: #484d55;
+      background-color: map-get($colors, "black-lighten2");
     }
     &:hover {
-      background-color: #484d55;
+      background-color: map-get($colors, "black-lighten2");
     }
     p {
       padding: 0 3px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
+      @include overflow-ellipsis;
     }
   }
 }

@@ -23,7 +23,7 @@ export default {
   border-top: 1.1em solid rgba(255, 255, 255, 0.2);
   border-right: 1.1em solid rgba(255, 255, 255, 0.2);
   border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-left: 1.1em solid #00adb5;
+  border-left: 1.1em solid map-get($colors, "point");
   transform: translateZ(0);
   animation: spinner1-animation 1.1s infinite linear;
 }

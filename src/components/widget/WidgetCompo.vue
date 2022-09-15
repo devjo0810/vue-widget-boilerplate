@@ -207,17 +207,17 @@ export default {
 
 <style lang="scss">
 .widget-component {
-  background-color: #ffffff;
-  border: 1px solid #222831;
+  background-color: map-get($colors, "white-lighten1");
+  border: 1px solid map-get($colors, "black");
   &.top {
     .widget-header {
-      background-color: #cccccc;
+      background-color: map-get($colors, "white-darken1");
     }
   }
 }
 .handle {
-  width: 8px;
-  height: 8px;
+  width: map-get($widget, "handle-size");
+  height: map-get($widget, "handle-size");
   background: none;
   border: none;
   margin: 0;

@@ -55,18 +55,10 @@ export default {
 
 <style lang="scss" scoped>
 .popup-background {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 0;
-  top: 0;
-  z-index: 9991;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  @include flex-center;
+  @include fixed-cover(9991);
   .widget-config-popup {
-    background-color: #ffffff;
+    background-color: map-get($colors, "white-lighten1");
     padding: 10px;
     border-radius: 10px;
     width: 300px;

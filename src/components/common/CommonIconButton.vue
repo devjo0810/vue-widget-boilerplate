@@ -22,20 +22,20 @@ export default {
 
 <style lang="scss">
 .common-icon-button {
-  background-color: #00adb5;
+  background-color: map-get($colors, "point");
   color: #eeeeee;
   width: 50px;
   height: 26px;
   border-radius: 13px;
-  border: 1px solid #aaaaaa;
+  border: 1px solid map-get($colors, "white-darken1");
   transition: all 0.3s ease-in-out;
   &:hover {
-    background-color: #009198;
+    background-color: map-get($colors, "point-darken1");
   }
   &.red {
-    background-color: #dc3c3c;
+    background-color: map-get($colors, "red");
     &:hover {
-      background-color: #b63f3f;
+      background-color: map-get($colors, "red-darken1");
     }
   }
 }
