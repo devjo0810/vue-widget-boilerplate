@@ -41,14 +41,12 @@ export default {
 
 <style lang="scss">
 .main-header {
+  @include flex-between;
   width: 100%;
   height: map-get($main-layout, "header-height");
   padding: 0 3vw;
   background-color: map-get($colors, "black");
   color: map-get($colors, "white");
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: 3px solid map-get($colors, "point");
 
   .left-section {

@@ -44,9 +44,7 @@ export default {
 
 <style lang="scss">
 .common-select-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-between;
   width: 100%;
   height: 26px;
   span {
