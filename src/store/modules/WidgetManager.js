@@ -18,7 +18,11 @@
  * isMinimize : 최소화 여부
  * isWindowPopup : 윈도우 팝업 여부
  * spinner : spinner on/off
+ * dialog : dialog open/close
+ *        : { show, type, title, message, callback }
  */
+import { DIALOG_TYPE } from "@/config";
+
 const state = {
   widgetList: [],
   widgetPosition: {
@@ -73,6 +77,13 @@ const mutations = {
       isWindowPopup: false,
       spinner: false,
       ...widget,
+      dialog: {
+        show: false,
+        type: null,
+        title: null,
+        message: null,
+        callback: null,
+      },
       id: createWidgetKey(),
       zindex: getNextZindex(state),
       x: state.widgetPosition.x,
@@ -103,6 +114,10 @@ const mutations = {
   setSpinner(state, { id, spinner }) {
     const widget = state.widgetList.find((item) => item.id === id);
     widget.spinner = spinner;
+  },
+  setDialog(state, { id, ...dialogOptions }) {
+    const widget = state.widgetList.find((item) => item.id === id);
+    widget.dialog = { ...dialogOptions };
   },
 };
 
@@ -251,6 +266,36 @@ const actions = {
   },
   toggleWidgetParent({ state, commit }) {
     commit("setIsParent", !state.isParent);
+  },
+  openAlertDialog({ commit }, { id, title, message, callback }) {
+    commit("setDialog", {
+      id,
+      show: true,
+      type: DIALOG_TYPE.ALERT,
+      title,
+      message,
+      callback,
+    });
+  },
+  openConfirmDialog({ commit }, { id, title, message, callback }) {
+    commit("setDialog", {
+      id,
+      show: true,
+      type: DIALOG_TYPE.CONFIRM,
+      title,
+      message,
+      callback,
+    });
+  },
+  closeDialog({ commit }, id) {
+    commit("setDialog", {
+      id,
+      show: false,
+      type: null,
+      title: null,
+      message: null,
+      callback: null,
+    });
   },
 };
 

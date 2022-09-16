@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss">
 .spinner-wrapper {
+  @include flex-center;
   position: absolute;
   left: 0;
   top: 0;
@@ -19,8 +20,5 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-content: center;
 }
 </style>

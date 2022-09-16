@@ -37,28 +37,27 @@
         <CommonTextButton label="초기화" @click="reset" />
       </div>
     </form>
-    <CommonSpinnerWrapper v-if="spinner">
-      <CommonSpinner1 />
-    </CommonSpinnerWrapper>
+    <WidgetSpinner :id="compoId" />
+    <WidgetDialog :id="compoId" />
   </div>
 </template>
 
 <script>
-import CommonSpinnerWrapper from "@/components/common/CommonSpinnerWrapper.vue";
-import CommonSpinner1 from "@/components/common/CommonSpinner1.vue";
 import CommonTextButton from "@/components/common/CommonTextButton.vue";
 import CommonInputBox from "@/components/common/CommonInputBox.vue";
 import CommonSelectBox from "@/components/common/CommonSelectBox.vue";
-import { mapGetters, mapActions } from "vuex";
+import WidgetSpinner from "@/components/widget/WidgetSpinner.vue";
+import WidgetDialog from "@/components/widget/WidgetDialog.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "WidgetMenuSignup",
   components: {
-    CommonSpinnerWrapper,
-    CommonSpinner1,
     CommonTextButton,
     CommonInputBox,
     CommonSelectBox,
+    WidgetSpinner,
+    WidgetDialog,
   },
   props: {
     compoId: {
@@ -93,20 +92,22 @@ export default {
     },
   }),
   methods: {
-    ...mapActions({
-      offSpinner: "WidgetManager/offSpinner",
-      onSpinner: "WidgetManager/onSpinner",
-    }),
-    signup() {
-      console.log(this.form);
-      this.onSpinner(this.compoId);
+    async signup() {
+      const flag = await this.$widget.confirm(this.compoId, "확인 메세지");
+      if (flag) {
+        this.callbackSpinner();
+      }
+    },
+    callbackSpinner() {
+      this.$widget.spinner.on(this.compoId);
       setTimeout(() => {
-        this.offSpinner(this.compoId);
+        this.$widget.spinner.off(this.compoId);
       }, 3000);
     },
     reset() {
       const originData = this.$options.data();
       this.form = { ...originData.form };
+      this.$widget.alert(this.compoId, "메세지");
     },
   },
 };

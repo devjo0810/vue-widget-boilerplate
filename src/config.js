@@ -22,4 +22,9 @@ const WIDGET = {
   DRAG_HANDLE: ".widget-drag-handle",
 };
 
-export { debug, APP, API_CONFIG, HTTP_STATUS, WIDGET };
+const DIALOG_TYPE = {
+  ALERT: 1,
+  CONFIRM: 2,
+};
+
+export { debug, APP, API_CONFIG, HTTP_STATUS, WIDGET, DIALOG_TYPE };
