@@ -64,10 +64,10 @@ export default {
     width: 300px;
     .header {
       display: flex;
-      margin-bottom: 20px;
       color: map-get($colors, "black");
+      padding: 0 10px;
       p {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: 500;
       }
       button {
@@ -76,6 +76,7 @@ export default {
       }
     }
     .body {
+      margin: 20px 0;
       .row {
         display: flex;
         align-items: center;

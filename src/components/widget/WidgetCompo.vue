@@ -144,6 +144,7 @@ export default {
       updateWidgetPositionAction: "WidgetManager/updateWidgetPosition",
       updateWidgetSizeAction: "WidgetManager/updateWidgetSize",
       minimizingWidgetAction: "WidgetManager/minimizingWidget",
+      updateWidgetSidePositionAction: "WidgetManager/updateWidgetSidePosition",
     }),
     handleWidgetHeaderClick() {
       this.sortWidgetZindexAction(this.id);
@@ -188,7 +189,7 @@ export default {
         w: this.parentWidth / 2,
         h: this.parentHeight,
       };
-      this.updateWidgetSizeAction(params);
+      this.updateWidgetSidePositionAction(params);
     },
     handleRightSideWidget() {
       const halfWidth = this.parentWidth / 2;
@@ -199,7 +200,7 @@ export default {
         w: halfWidth,
         h: this.parentHeight,
       };
-      this.updateWidgetSizeAction(params);
+      this.updateWidgetSidePositionAction(params);
     },
   },
 };

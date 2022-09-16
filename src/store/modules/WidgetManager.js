@@ -19,7 +19,7 @@
  * isWindowPopup : 윈도우 팝업 여부
  * spinner : spinner on/off
  * dialog : dialog open/close
- *        : { show, type, title, message, callback }
+ *        : { show, type, title, message, callback: Promise }
  */
 import { DIALOG_TYPE } from "@/config";
 
@@ -203,18 +203,17 @@ const actions = {
     });
   },
   // 위젯 창화면
-  smallSizingWidget({ state, commit, dispatch }, id) {
+  async smallSizingWidget({ state, commit, dispatch }, id) {
     dispatch("sortWidgetZindex", id);
     const { bfX, bfY, bfW, bfH } = loadBfPositionAndSize(state, id);
-    // 위치는 이전으로 안돌아감..
-    commit("setWidget", {
+    // [UPDATE] 2022-09-16 위치 안돌아가는 버그 수정
+    await commit("setWidget", {
       id,
       isFullSize: false,
-      x: bfX,
-      y: bfY,
       w: bfW,
       h: bfH,
     });
+    await commit("setWidget", { id, x: bfX, y: bfY });
   },
   // 위젯 위치 업데이트
   updateWidgetPosition({ commit, dispatch }, { id, x, y }) {
@@ -225,6 +224,11 @@ const actions = {
   updateWidgetSize({ commit, dispatch }, { id, x, y, w, h }) {
     dispatch("sortWidgetZindex", id);
     commit("setWidget", { id, x, y, w, h });
+  },
+  // 위젯 사이드 정렬
+  updateWidgetSidePosition({ commit, dispatch }, { id, x, y, w, h }) {
+    dispatch("sortWidgetZindex", id);
+    commit("setWidget", { id, x, y, w, h, isFullSize: false });
   },
   // 위젯 최소화
   minimizingWidget({ commit }, id) {
@@ -253,20 +257,24 @@ const actions = {
       dispatch("minimizingWidget", id);
     }
   },
-  onSpinner({ commit }, id) {
-    commit("setSpinner", { id, spinner: true });
-  },
-  offSpinner({ commit }, id) {
-    commit("setSpinner", { id, spinner: false });
-  },
   // 위젯 초기화
   initWidget({ commit }) {
     commit("initWidgetList");
     commit("initWidgetPosition");
   },
+  // 위젯 부모창 존속 토글링
   toggleWidgetParent({ state, commit }) {
     commit("setIsParent", !state.isParent);
   },
+  // 위젯 spinner on
+  onSpinner({ commit }, id) {
+    commit("setSpinner", { id, spinner: true });
+  },
+  // 위젯 spinner off
+  offSpinner({ commit }, id) {
+    commit("setSpinner", { id, spinner: false });
+  },
+  // 위젯 alert open
   openAlertDialog({ commit }, { id, title, message, callback }) {
     commit("setDialog", {
       id,
@@ -277,6 +285,7 @@ const actions = {
       callback,
     });
   },
+  // 위젯 confirm open
   openConfirmDialog({ commit }, { id, title, message, callback }) {
     commit("setDialog", {
       id,
@@ -287,6 +296,7 @@ const actions = {
       callback,
     });
   },
+  // 위젯 dialog close
   closeDialog({ commit }, id) {
     commit("setDialog", {
       id,

@@ -78,12 +78,12 @@ export default {
 <style lang="scss">
 .dialog-wrapper {
   @include flex-center;
-  position: absolute;
+  position: fixed;
   left: 0;
-  top: 0;
+  top: map-get($widget, "widget-header-height");
   z-index: 9998;
   width: 100%;
-  height: 100%;
+  height: calc(100% - map-get($widget, "widget-header-height"));
   background-color: rgba(0, 0, 0, 0.2);
 
   .common-dialog {

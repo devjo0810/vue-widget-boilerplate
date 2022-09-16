@@ -1,5 +1,5 @@
 <template>
-  <CommonSpinnerWrapper v-if="spinner">
+  <CommonSpinnerWrapper v-if="spinner" class="widget-spinner-wrapper">
     <CommonSpinner1 />
   </CommonSpinnerWrapper>
 </template>
@@ -27,3 +27,11 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.widget-spinner-wrapper {
+  position: fixed;
+  top: map-get($widget, "widget-header-height");
+  height: calc(100% - map-get($widget, "widget-header-height"));
+}
+</style>
