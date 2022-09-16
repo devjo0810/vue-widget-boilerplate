@@ -17,9 +17,19 @@
             />
           </div>
           <div class="row between">
+            <p>위젯 로컬 저장</p>
+            <CommonIconButton
+              icon="cloud-arrow-up"
+              @click="saveCurrentWidgetListForSession"
+            />
+          </div>
+          <div class="row between">
             <p>위젯 전체 삭제</p>
             <CommonIconButton icon="trash" color="red" @click="initWidget" />
           </div>
+        </section>
+        <section class="version">
+          <span>version {{ appVersion }}</span>
         </section>
       </div>
     </div>
@@ -30,6 +40,7 @@
 import { mapGetters, mapActions } from "vuex";
 import CommonToggle from "@/components/common/CommonToggle";
 import CommonIconButton from "@/components/common/CommonIconButton";
+import { APP } from "@/config";
 
 export default {
   name: "WidgetManagerConfigPopup",
@@ -42,11 +53,16 @@ export default {
       isOpen: "Popup/getWidgetManagerConfig",
       isParent: "WidgetManager/getIsParent",
     }),
+    appVersion() {
+      return APP.version;
+    },
   },
   methods: {
     ...mapActions({
       closePopup: "Popup/closeWidgetManagerConfig",
       toggleWidgetParent: "WidgetManager/toggleWidgetParent",
+      saveCurrentWidgetListForSession:
+        "WidgetManager/saveCurrentWidgetListForSession",
       initWidget: "WidgetManager/initWidget",
     }),
   },
@@ -92,6 +108,9 @@ export default {
           font-size: 14px;
         }
       }
+    }
+    .version {
+      @include flex-center;
     }
   }
 }

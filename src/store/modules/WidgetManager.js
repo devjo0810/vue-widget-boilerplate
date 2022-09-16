@@ -24,7 +24,7 @@
 import { DIALOG_TYPE } from "@/config";
 
 const state = {
-  widgetList: [],
+  widgetList: loadCurrentWidgetListForSession() || [],
   widgetPosition: {
     x: 10,
     y: 10,
@@ -307,6 +307,11 @@ const actions = {
       callback: null,
     });
   },
+  // 현 위젯목록 sessionStorage에 저장
+  saveCurrentWidgetListForSession({ state }) {
+    const widgetListString = JSON.stringify(state.widgetList);
+    sessionStorage.setItem("widgetList", widgetListString);
+  },
 };
 
 // 위젯 고유키 생성
@@ -336,6 +341,12 @@ function loadBfPositionAndSize(state, id) {
   const widget = state.widgetList.find((item) => item.id === id);
   const { bfX, bfY, bfW, bfH } = widget;
   return { bfX, bfY, bfW, bfH };
+}
+
+// 세션스토리지 widgetList 로드
+function loadCurrentWidgetListForSession() {
+  const widgetList = JSON.parse(sessionStorage.getItem("widgetList"));
+  return widgetList;
 }
 
 export default {

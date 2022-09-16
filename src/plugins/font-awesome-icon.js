@@ -10,6 +10,7 @@ import {
   faTrash,
   faCaretLeft,
   faCaretRight,
+  faCloudArrowUp,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -21,6 +22,7 @@ library.add(
   faGear,
   faTrash,
   faCaretLeft,
-  faCaretRight
+  faCaretRight,
+  faCloudArrowUp
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);

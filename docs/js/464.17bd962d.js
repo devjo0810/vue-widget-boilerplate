@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkwidget_boilerplate"]=self["webpackChunkwidget_boilerplate"]||[]).push([[464],{1464:function(e,n,t){t.r(n),t.d(n,{default:function(){return s}});var u=function(){var e=this,n=e._self._c;return n("div",[e._v("WidgetMenuGrid")])},i=[],l={name:"WidgetMenuGrid"},r=l,d=t(1001),a=(0,d.Z)(r,u,i,!1,null,null,null),s=a.exports}}]);
+//# sourceMappingURL=464.17bd962d.js.map
