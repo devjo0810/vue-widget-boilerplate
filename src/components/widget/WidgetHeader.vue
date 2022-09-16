@@ -44,6 +44,7 @@ export default {
 
 <style lang="scss">
 .widget-header {
+  @include overflow-ellipsis;
   display: flex;
   align-items: center;
   width: 100%;

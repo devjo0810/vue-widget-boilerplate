@@ -17,8 +17,8 @@ const HTTP_STATUS = {
 };
 
 const WIDGET = {
-  MIN_WIDTH: 200,
-  MIN_HEIGHT: 200,
+  MIN_WIDTH: 300,
+  MIN_HEIGHT: 300,
   DRAG_HANDLE: ".widget-drag-handle",
 };
 
