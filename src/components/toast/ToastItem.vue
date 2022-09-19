@@ -34,6 +34,7 @@ export default {
   padding: 10px 17px;
   color: map-get($colors, "white");
   font-size: 1.4rem;
+  width: 220px;
   .icon {
     font-size: 1.9rem;
     margin-right: 8px;

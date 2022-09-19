@@ -23,6 +23,7 @@
  *        : { show, type, title, message, callback: Promise }
  */
 import { DIALOG_TYPE } from "@/config";
+import { createKey } from "@/utils/util";
 
 const state = {
   widgetList: loadCurrentWidgetListForSession() || [],
@@ -86,7 +87,7 @@ const mutations = {
         message: null,
         callback: null,
       },
-      id: createWidgetKey(),
+      id: createKey(),
       zindex: getNextZindex(state),
       x: state.widgetPosition.x,
       y: state.widgetPosition.y,
@@ -329,11 +330,6 @@ const actions = {
     sessionStorage.setItem("widgetList", widgetListString);
   },
 };
-
-// 위젯 고유키 생성
-function createWidgetKey() {
-  return new Date().getTime().toString();
-}
 
 // 위젯 zindex 최대값 조회
 function getMaxZindex(state) {

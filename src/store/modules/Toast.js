@@ -1,7 +1,9 @@
 import { TOAST } from "@/config";
+import { createKey } from "@/utils/util";
 
 /**
  * Toast Define
+ * id : Toast 고유키
  * message : toast message
  * type : [primary, info, warning, danger]
  */
@@ -19,6 +21,7 @@ const mutations = {
   addToast(state, toast) {
     state.toastList.push({
       ...toast,
+      id: createKey(),
     });
   },
   delToast(state) {

@@ -1,14 +1,12 @@
 <template>
-  <div class="toastManager">
-    <transition-group name="slide-up" tag="ul">
-      <ToastItem
-        v-for="(toast, i) in toastList"
-        :key="i"
-        v-bind="toast"
-        class="slide-up-item"
-      />
-    </transition-group>
-  </div>
+  <transition-group name="slide-up" tag="ul" class="toast-manager">
+    <ToastItem
+      v-for="toast in toastList"
+      :key="toast.id"
+      v-bind="toast"
+      class="slide-up-item"
+    />
+  </transition-group>
 </template>
 
 <script>
@@ -29,12 +27,10 @@ export default {
 </script>
 
 <style lang="scss">
-.toastManager {
+.toast-manager {
   position: fixed;
   bottom: map-get($widget, "minimize-wrapper-height");
   right: 10px;
-  ul {
-    margin: 0;
-  }
+  margin: 0 0 10px 0;
 }
 </style>
