@@ -36,6 +36,7 @@
       :compoName="compoName"
       :compoData="compoData"
       @widgetBodyClick="handleWidgetHeaderClick"
+      @widgetBodyReady="handleWidgetBodyReady"
     />
   </VueDraggableResizable>
 </template>
@@ -115,6 +116,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isAutoSize: {
+      // 자동크기 여부
+      type: Boolean,
+    },
   },
   data: () => ({
     widgetMinWidth: WIDGET.MIN_WIDTH,
@@ -143,15 +148,27 @@ export default {
       closeWidgetAction: "WidgetManager/closeWidget",
       updateWidgetPositionAction: "WidgetManager/updateWidgetPosition",
       updateWidgetSizeAction: "WidgetManager/updateWidgetSize",
+      updateWidgetSizeAndPositionAction:
+        "WidgetManager/updateWidgetSizeAndPosition",
       minimizingWidgetAction: "WidgetManager/minimizingWidget",
       updateWidgetSidePositionAction: "WidgetManager/updateWidgetSidePosition",
     }),
     handleWidgetHeaderClick() {
+      this.handleWidgetActive(true);
       this.sortWidgetZindexAction(this.id);
     },
     handleWidgetBodyClick() {
       this.handleWidgetActive(true);
       this.sortWidgetZindexAction(this.id);
+    },
+    handleWidgetBodyReady(w, h) {
+      if (this.isAutoSize) {
+        this.updateWidgetSizeAction({
+          id: this.id,
+          w,
+          h: h + WIDGET.HEADER_HEIGHT,
+        });
+      }
     },
     handleWidgetActive(isActive) {
       this.widgetActive = isActive;
@@ -179,7 +196,7 @@ export default {
     },
     handleResizing(x, y, w, h) {
       const params = { id: this.id, x, y, w, h };
-      this.updateWidgetSizeAction(params);
+      this.updateWidgetSizeAndPositionAction(params);
     },
     handleLeftSideWidget() {
       const params = {

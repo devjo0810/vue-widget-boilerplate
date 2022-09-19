@@ -115,8 +115,6 @@ export default {
 
 <style lang="scss">
 .menu-signup {
-  width: 100%;
-  height: 100%;
   .signup-form {
     display: flex;
     justify-content: center;

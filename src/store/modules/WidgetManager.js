@@ -17,6 +17,7 @@
  * isFullSize : 전체스크린 여부
  * isMinimize : 최소화 여부
  * isWindowPopup : 윈도우 팝업 여부
+ * isAutoSize : 자동크기 여부
  * spinner : spinner on/off
  * dialog : dialog open/close
  *        : { show, type, title, message, callback: Promise }
@@ -75,6 +76,7 @@ const mutations = {
       isFullSize: false,
       isMinimize: false,
       isWindowPopup: false,
+      isAutoSize: true,
       spinner: false,
       ...widget,
       dialog: {
@@ -220,8 +222,13 @@ const actions = {
     dispatch("sortWidgetZindex", id);
     commit("setWidget", { id, x, y });
   },
+  // 위젯 사이즈 업데이트
+  updateWidgetSize({ commit, dispatch }, { id, w, h }) {
+    dispatch("sortWidgetZindex", id);
+    commit("setWidget", { id, w, h });
+  },
   // 위젯 사이즈 및 위치 업데이트
-  updateWidgetSize({ commit, dispatch }, { id, x, y, w, h }) {
+  updateWidgetSizeAndPosition({ commit, dispatch }, { id, x, y, w, h }) {
     dispatch("sortWidgetZindex", id);
     commit("setWidget", { id, x, y, w, h });
   },

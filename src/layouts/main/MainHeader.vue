@@ -10,7 +10,7 @@
       </li>
     </ul>
     <section class="right-section">
-      <button @click="openWidgetManagerConfigPopup">
+      <button title="위젯설정" @click="openWidgetManagerConfigPopup">
         <font-awesome-icon icon="gear" />
       </button>
     </section>

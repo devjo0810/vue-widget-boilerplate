@@ -20,6 +20,7 @@ const WIDGET = {
   MIN_WIDTH: 300,
   MIN_HEIGHT: 300,
   DRAG_HANDLE: ".widget-drag-handle",
+  HEADER_HEIGHT: 34, // 32 + 1 + 1
 };
 
 const DIALOG_TYPE = {

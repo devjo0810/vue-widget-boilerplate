@@ -1,6 +1,7 @@
 <template>
   <div class="widget-body" @click="$emit('widgetBodyClick')">
     <component
+      ref="bodyComponent"
       v-if="component"
       :is="component"
       v-bind="compoData"
@@ -38,6 +39,10 @@ export default {
       default: () => ({}),
     },
   },
+  data: () => ({
+    bodyInterval: null,
+    refBody: null,
+  }),
   computed: {
     component() {
       let menuName = this.compoName;
@@ -46,6 +51,49 @@ export default {
         menuName = "NotFound";
       }
       return menuName;
+    },
+    bodyScrollWidth() {
+      const refBody = this.refBody;
+      if (!refBody) return null;
+      return refBody.$el.scrollWidth;
+    },
+    bodyScrollHeight() {
+      const refBody = this.refBody;
+      if (!refBody) return null;
+      return refBody.$el.scrollHeight;
+    },
+  },
+  watch: {
+    refBody() {
+      this.ready();
+    },
+  },
+  mounted() {
+    this.setCheckBodyInterval();
+  },
+  methods: {
+    setCheckBodyInterval() {
+      this.bodyInterval = setInterval(this.checkBodyMount, 250);
+    },
+    checkBodyMount() {
+      if (this.refBody) {
+        clearInterval(this.bodyInterval);
+        this.bodyInterval = null;
+        return;
+      }
+      if (this.$refs.bodyComponent) {
+        this.refBody = this.$refs.bodyComponent;
+      }
+    },
+    ready() {
+      if (this.refBody) {
+        this.$emit(
+          "widgetBodyReady",
+          this.bodyScrollWidth,
+          this.bodyScrollHeight,
+          this.refBody
+        );
+      }
     },
   },
 };
