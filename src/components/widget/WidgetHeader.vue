@@ -4,22 +4,30 @@
       <p>{{ title }}</p>
     </section>
     <section class="btn-section">
-      <button @click="$emit('leftSideWidget')">
+      <button title="왼쪽정렬" @click="$emit('leftSideWidget')">
         <font-awesome-icon icon="caret-left" />
       </button>
-      <button @click="$emit('rightSideWidget')">
+      <button title="오른쪽정렬" @click="$emit('rightSideWidget')">
         <font-awesome-icon icon="caret-right" />
       </button>
-      <button @click="$emit('minimizeWidget')">
+      <button title="최소화" @click="$emit('minimizeWidget')">
         <font-awesome-icon icon="window-minimize" />
       </button>
-      <button v-if="!isFullSize" @click="$emit('fullSizeWidget')">
+      <button
+        v-if="!isFullSize"
+        title="전체크기"
+        @click="$emit('fullSizeWidget')"
+      >
         <font-awesome-icon icon="maximize" />
       </button>
-      <button v-if="isFullSize" @click="$emit('smallSizeWidget')">
+      <button
+        v-if="isFullSize"
+        title="창크기"
+        @click="$emit('smallSizeWidget')"
+      >
         <font-awesome-icon icon="minimize" />
       </button>
-      <button @click="$emit('closeWidget')">
+      <button title="닫기" @click="$emit('closeWidget')">
         <font-awesome-icon icon="xmark" />
       </button>
     </section>
