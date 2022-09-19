@@ -226,9 +226,18 @@ const actions = {
     commit("setWidget", { id, x, y, w, h });
   },
   // 위젯 사이드 정렬
-  updateWidgetSidePosition({ commit, dispatch }, { id, x, y, w, h }) {
+  async updateWidgetSidePosition({ commit, dispatch }, { id, x, y, w, h }) {
     dispatch("sortWidgetZindex", id);
-    commit("setWidget", { id, x, y, w, h, isFullSize: false });
+    // x, y 값 0으로 초기화 후 위젯 크기조절해야 부모창 존속되게 조절됨
+    await commit("setWidget", {
+      id,
+      isFullSize: false,
+      x: 0,
+      y: 0,
+      w,
+      h,
+    });
+    await commit("setWidget", { id, x, y });
   },
   // 위젯 최소화
   minimizingWidget({ commit }, id) {
