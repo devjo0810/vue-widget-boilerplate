@@ -1,0 +1,54 @@
+<template>
+  <li class="toast-item" :class="typeClass">
+    <font-awesome-icon class="icon" :icon="typeIcon" />
+    <span>{{ message }}</span>
+  </li>
+</template>
+
+<script>
+import { TOAST } from "@/config";
+
+export default {
+  name: "ToastItem",
+  props: {
+    message: String,
+    type: Number,
+  },
+  computed: {
+    typeClass() {
+      const type = this.type;
+      return TOAST.TYPE.CLASS[type];
+    },
+    typeIcon() {
+      const type = this.type;
+      return TOAST.TYPE.ICON[type];
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+.toast-item {
+  @include flex-between;
+  @include list-margin-bottom(5px);
+  padding: 10px 17px;
+  color: map-get($colors, "white");
+  font-size: 1.4rem;
+  .icon {
+    font-size: 1.9rem;
+    margin-right: 8px;
+  }
+  &.primary {
+    background-color: map-get($colors, "point");
+  }
+  &.info {
+    background-color: map-get($colors, "black-lighten2");
+  }
+  &.warning {
+    background-color: map-get($colors, "yellow-darken1");
+  }
+  &.danger {
+    background-color: map-get($colors, "red");
+  }
+}
+</style>

@@ -20,6 +20,12 @@
         type="password"
         v-model="form.password"
       />
+      <CommonInputBox
+        class="item"
+        label="비밀번호 확인"
+        type="password"
+        v-model="form.rePassword"
+      />
       <CommonSelectBox
         class="item"
         label="사용자 타입"
@@ -86,6 +92,7 @@ export default {
     form: {
       id: "",
       password: "",
+      rePassword: "",
       name: "",
       type: "",
       auth: "",
@@ -110,6 +117,9 @@ export default {
       this.$widget.alert(this.compoId, "메세지");
     },
   },
+  mounted() {
+    this.$toast.warning("WidgetMenuSignup");
+  },
 };
 </script>
 
@@ -130,7 +140,7 @@ export default {
       font-size: 1.3rem;
     }
     .btn-area {
-      margin-top: 20px;
+      margin: 20px 0;
       font-size: 1.3rem;
       button {
         margin-right: 10px;

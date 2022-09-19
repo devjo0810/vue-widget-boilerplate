@@ -11,6 +11,10 @@ import {
   faCaretLeft,
   faCaretRight,
   faCloudArrowUp,
+  faCircleCheck,
+  faCircleInfo,
+  faTriangleExclamation,
+  faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -23,6 +27,10 @@ library.add(
   faTrash,
   faCaretLeft,
   faCaretRight,
-  faCloudArrowUp
+  faCloudArrowUp,
+  faCircleCheck,
+  faCircleInfo,
+  faTriangleExclamation,
+  faCircleXmark
 );
 Vue.component("font-awesome-icon", FontAwesomeIcon);

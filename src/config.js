@@ -28,4 +28,26 @@ const DIALOG_TYPE = {
   CONFIRM: 2,
 };
 
-export { debug, APP, API_CONFIG, HTTP_STATUS, WIDGET, DIALOG_TYPE };
+const TOAST = {
+  TIMEOUT: 5000, // 5s
+  TYPE: {
+    PRIMARY: 1,
+    INFO: 2,
+    WARNING: 3,
+    DANGER: 4,
+    CLASS: {
+      1: "primary",
+      2: "info",
+      3: "warning",
+      4: "danger",
+    },
+    ICON: {
+      1: "circle-check",
+      2: "circle-info",
+      3: "triangle-exclamation",
+      4: "circle-xmark",
+    },
+  },
+};
+
+export { debug, APP, API_CONFIG, HTTP_STATUS, WIDGET, DIALOG_TYPE, TOAST };

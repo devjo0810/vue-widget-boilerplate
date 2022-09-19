@@ -42,6 +42,7 @@ export default {
     setTimeout(() => {
       this.offSpinner(this.compoId);
     }, 3000);
+    this.$toast.danger("WidgetMenuNotFound");
   },
 };
 </script>

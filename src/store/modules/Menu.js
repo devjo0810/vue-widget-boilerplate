@@ -2,8 +2,6 @@ const sampleMenuList = [
   {
     title: "Signup",
     compoName: "Signup",
-    w: 500,
-    h: 400,
   },
   {
     title: "Grid",
