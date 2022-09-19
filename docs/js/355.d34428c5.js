@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkwidget_boilerplate"]=self["webpackChunkwidget_boilerplate"]||[]).push([[355],{6355:function(e,t,n){n.r(t),n.d(t,{default:function(){return s}});var i=function(){var e=this,t=e._self._c;return t("div",[e._v("WidgetMenuGrid")])},u=[],r={name:"WidgetMenuGrid",mounted(){this.$toast.danger("WidgetMenuGrid")}},l=r,d=n(3736),a=(0,d.Z)(l,i,u,!1,null,null,null),s=a.exports}}]);
+//# sourceMappingURL=355.d34428c5.js.map
