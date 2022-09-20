@@ -49,36 +49,24 @@
 </template>
 
 <script>
+import Base from "./BaseComponent.vue";
 import CommonTextButton from "@/components/common/CommonTextButton.vue";
 import CommonInputBox from "@/components/common/CommonInputBox.vue";
 import CommonSelectBox from "@/components/common/CommonSelectBox.vue";
-import WidgetSpinner from "@/components/widget/WidgetSpinner.vue";
-import WidgetDialog from "@/components/widget/WidgetDialog.vue";
 import { mapGetters } from "vuex";
 
 export default {
+  extends: Base,
   name: "WidgetMenuSignup",
   components: {
     CommonTextButton,
     CommonInputBox,
     CommonSelectBox,
-    WidgetSpinner,
-    WidgetDialog,
-  },
-  props: {
-    compoId: {
-      type: String,
-      required: true,
-    },
   },
   computed: {
     ...mapGetters({
       widgetList: "WidgetManager/getWidgetList",
     }),
-    spinner() {
-      const widget = this.widgetList.find((item) => item.id === this.compoId);
-      return widget.spinner;
-    },
   },
   data: () => ({
     typeItems: [
@@ -116,10 +104,6 @@ export default {
       this.form = { ...originData.form };
       this.$widget.alert(this.compoId, "메세지");
     },
-  },
-  mounted() {
-    console.log("signup mounted");
-    this.$emit("mounted");
   },
 };
 </script>

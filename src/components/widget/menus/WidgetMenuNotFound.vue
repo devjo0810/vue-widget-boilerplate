@@ -1,29 +1,18 @@
 <template>
   <div>
-    WidgetMenuNotFound
-    <CommonSpinnerWrapper v-if="spinner">
-      <CommonSpinner1 />
-    </CommonSpinnerWrapper>
+    <p>WidgetMenuNotFound</p>
+    <WidgetSpinner :id="compoId" />
+    <WidgetDialog :id="compoId" />
   </div>
 </template>
 
 <script>
-import CommonSpinnerWrapper from "@/components/common/CommonSpinnerWrapper.vue";
-import CommonSpinner1 from "@/components/common/CommonSpinner1.vue";
+import Base from "./BaseComponent.vue";
 import { mapGetters } from "vuex";
 
 export default {
+  extends: Base,
   name: "WidgetMenuNotFound",
-  components: {
-    CommonSpinnerWrapper,
-    CommonSpinner1,
-  },
-  props: {
-    compoId: {
-      type: String,
-      required: true,
-    },
-  },
   computed: {
     ...mapGetters({
       widgetList: "WidgetManager/getWidgetList",
@@ -31,10 +20,6 @@ export default {
     compoName() {
       const widget = this.widgetList.find((item) => item.id === this.compoId);
       return widget.compoName;
-    },
-    spinner() {
-      const widget = this.widgetList.find((item) => item.id === this.compoId);
-      return widget.spinner;
     },
   },
   mounted() {
@@ -44,3 +29,5 @@ export default {
   },
 };
 </script>
+
+<style lang="scss"></style>

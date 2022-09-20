@@ -1,6 +1,8 @@
 ![메인사진](/src/assets/readme/main_img.png)
 <h1 align="center">Vue Widget Boilerplate</h1>
 
+## [Live Demo](https://devjo0810.github.io/vue-widget-boilerplate/#)
+
 ## 목차
 
 * [Features](#features)
@@ -49,7 +51,33 @@ npm run lint
 
 ---
 
-[Live Demo](https://devjo0810.github.io/vue-widget-boilerplate/#)
+### Widget Menu Snippet
+```json
+"Vue Widget Template": {
+  "prefix": "widget",
+  "body": [
+    "<template>",
+    "  <div>",
+    "    <WidgetSpinner :id=\"compoId\" />",
+    "    <WidgetDialog :id=\"compoId\" />",
+    "  </div>",
+    "</template>",
+    "",
+    "<script>",
+    "import Base from \"./BaseComponent.vue\";",
+    "",
+    "export default {",
+    "  extends: Base,",
+    "  name: \"${1}\",",
+    "};",
+    "</script>",
+    "",
+    "<style lang=\"scss\"></style>",
+    "",
+  ],
+  "description": "Vue Widget Template"
+}
+```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
