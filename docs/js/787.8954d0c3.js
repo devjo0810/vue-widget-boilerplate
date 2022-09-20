@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkwidget_boilerplate"]=self["webpackChunkwidget_boilerplate"]||[]).push([[787],{4787:function(e,n,t){t.r(n),t.d(n,{default:function(){return o}});var l=function(){var e=this,n=e._self._c;return n("div",[e._v("WidgetMenuLoading")])},u=[],i={name:"WmLoading"},r=i,a=t(3736),d=(0,a.Z)(r,l,u,!1,null,null,null),o=d.exports}}]);
+//# sourceMappingURL=787.8954d0c3.js.map
