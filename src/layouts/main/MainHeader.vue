@@ -2,6 +2,7 @@
   <header class="main-header">
     <ul class="left-section">
       <li
+        class="nav-menu"
         v-for="(item, i) in widgetMenuList"
         :key="i"
         @click="createWidget(item)"
@@ -56,14 +57,15 @@ export default {
     padding: 0;
     font-size: 1.3rem;
     height: 100%;
-    li {
+    .nav-menu {
       @include flex-center;
       @include overflow-ellipsis;
+      position: relative;
       height: 100%;
-      width: 80px;
+      width: 120px;
       cursor: pointer;
       padding: 0 5px;
-      transition: all 0.2s ease-in-out;
+      transition: $transition;
       &:hover {
         background-color: map-get($colors, "black-lighten2");
       }

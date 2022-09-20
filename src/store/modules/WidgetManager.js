@@ -22,11 +22,12 @@
  * dialog : dialog open/close
  *        : { show, type, title, message, callback: Promise }
  */
+import Vue from "vue";
 import { DIALOG_TYPE } from "@/config";
 import { createKey } from "@/utils/util";
 
 const state = {
-  widgetList: loadCurrentWidgetListForSession() || [],
+  widgetList: loadSessionWidgetList() || [],
   widgetPosition: {
     x: 10,
     y: 10,
@@ -126,18 +127,17 @@ const mutations = {
 
 const actions = {
   // 위젯 생성
-  createWidget({ state, commit, dispatch }, widgetOption) {
-    const { isOnlyOne, compoName } = widgetOption;
-    // onlyOne 옵션이 있는 컴포넌트일 경우 기존 위젯 종료후 생성
-    if (isOnlyOne) {
-      const widget = state.widgetList.find(
-        (item) => item.compoName === compoName
-      );
-      if (widget) {
-        dispatch("closeWidget", widget.id);
-      }
+  createWidget(
+    { state, commit, dispatch },
+    { title, compoName, compoData, isOnlyOne }
+  ) {
+    if (!compoName) {
+      Vue.toast.danger(`${title} 메뉴에 등록된 위젯 컴포넌트가 없습니다.`);
+      return;
     }
-    commit("addWidget", widgetOption);
+    // onlyOne 옵션이 있는 컴포넌트일 경우 기존 위젯 종료후 생성
+    checkOnlyOneWidget(isOnlyOne, compoName, state, dispatch);
+    commit("addWidget", { title, compoName, compoData, isOnlyOne });
     commit("setNextWidgetPosition");
   },
   // 위젯 zindex값 정렬
@@ -325,7 +325,7 @@ const actions = {
     });
   },
   // 현 위젯목록 sessionStorage에 저장
-  saveCurrentWidgetListForSession({ state }) {
+  saveCurrentWidgetListToSession({ state }) {
     const widgetListString = JSON.stringify(state.widgetList);
     sessionStorage.setItem("widgetList", widgetListString);
   },
@@ -356,9 +356,21 @@ function loadBfPositionAndSize(state, id) {
 }
 
 // 세션스토리지 widgetList 로드
-function loadCurrentWidgetListForSession() {
+function loadSessionWidgetList() {
   const widgetList = JSON.parse(sessionStorage.getItem("widgetList"));
   return widgetList;
+}
+
+// 위젯 1개 유지여부 체크
+function checkOnlyOneWidget(isOnlyOne, compoName, state, dispatch) {
+  if (isOnlyOne) {
+    const widget = state.widgetList.find(
+      (item) => item.compoName === compoName
+    );
+    if (widget) {
+      dispatch("closeWidget", widget.id);
+    }
+  }
 }
 
 export default {

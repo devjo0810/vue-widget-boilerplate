@@ -22,7 +22,7 @@ export default {
   padding: 5px;
   border: 1px solid #aaaaaa;
   background-color: #eeeeee;
-  transition: all 0.3s ease-in-out;
+  transition: $transition;
   &:hover {
     background-color: #aaaaaa;
   }

@@ -118,7 +118,8 @@ export default {
     },
   },
   mounted() {
-    this.$toast.warning("WidgetMenuSignup");
+    console.log("signup mounted");
+    this.$emit("mounted");
   },
 };
 </script>

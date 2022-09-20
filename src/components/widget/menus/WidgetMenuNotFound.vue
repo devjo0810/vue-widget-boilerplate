@@ -10,7 +10,7 @@
 <script>
 import CommonSpinnerWrapper from "@/components/common/CommonSpinnerWrapper.vue";
 import CommonSpinner1 from "@/components/common/CommonSpinner1.vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "WidgetMenuNotFound",
@@ -28,21 +28,19 @@ export default {
     ...mapGetters({
       widgetList: "WidgetManager/getWidgetList",
     }),
+    compoName() {
+      const widget = this.widgetList.find((item) => item.id === this.compoId);
+      return widget.compoName;
+    },
     spinner() {
       const widget = this.widgetList.find((item) => item.id === this.compoId);
       return widget.spinner;
     },
   },
-  methods: {
-    ...mapActions({
-      offSpinner: "WidgetManager/offSpinner",
-    }),
-  },
   mounted() {
-    setTimeout(() => {
-      this.offSpinner(this.compoId);
-    }, 3000);
-    this.$toast.danger("WidgetMenuNotFound");
+    this.$toast.danger(
+      `${this.compoName} 일치하는 위젯 컴포넌트를 찾을 수 없습니다.`
+    );
   },
 };
 </script>

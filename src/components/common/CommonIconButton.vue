@@ -28,7 +28,7 @@ export default {
   height: 26px;
   border-radius: 13px;
   border: 1px solid map-get($colors, "white-darken1");
-  transition: all 0.3s ease-in-out;
+  transition: $transition;
   &:hover {
     background-color: map-get($colors, "point-darken1");
   }

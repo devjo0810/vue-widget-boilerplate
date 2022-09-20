@@ -39,7 +39,7 @@ export default {
   height: 26px;
   border-radius: 13px;
   background-color: #cccccc;
-  transition: all 0.2s ease-in-out;
+  transition: $transition;
   border: 1px solid #aaaaaa;
   font-weight: 600;
   &.active {

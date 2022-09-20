@@ -79,7 +79,7 @@ export default {
       height: 100%;
       width: map-get($widget, "widget-header-height");
       color: map-get($colors, "black");
-      transition: all 0.3s ease;
+      transition: $transition;
       &:hover {
         background-color: map-get($colors, "white-darken2");
       }

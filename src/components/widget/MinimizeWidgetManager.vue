@@ -52,7 +52,7 @@ export default {
     background-color: map-get($colors, "black");
     border-bottom: 2px solid map-get($colors, "point");
     color: map-get($colors, "white-lighten1");
-    transition: all 0.2s ease-in-out;
+    transition: $transition;
     &.active {
       background-color: map-get($colors, "black-lighten2");
     }

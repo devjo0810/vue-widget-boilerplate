@@ -20,7 +20,8 @@ const WIDGET = {
   MIN_WIDTH: 300,
   MIN_HEIGHT: 300,
   DRAG_HANDLE: ".widget-drag-handle",
-  HEADER_HEIGHT: 34, // 32 + 1 + 1
+  HEADER_HEIGHT: 36, // 32 + border
+  MENU_PREFIX: "WidgetMenu",
 };
 
 const DIALOG_TYPE = {

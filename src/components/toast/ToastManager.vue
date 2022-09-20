@@ -29,8 +29,8 @@ export default {
 <style lang="scss">
 .toast-manager {
   position: fixed;
-  bottom: map-get($widget, "minimize-wrapper-height");
+  bottom: map-get($widget, "minimize-wrapper-height") + 10px;
   right: 10px;
-  margin: 0 0 10px 0;
+  margin: 0;
 }
 </style>

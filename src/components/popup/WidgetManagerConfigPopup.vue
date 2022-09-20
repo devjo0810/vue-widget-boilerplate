@@ -20,7 +20,7 @@
             <p>위젯 로컬 저장</p>
             <CommonIconButton
               icon="cloud-arrow-up"
-              @click="saveCurrentWidgetListForSession"
+              @click="saveCurrentWidgetListToSession"
             />
           </div>
           <div class="row between">
@@ -61,8 +61,8 @@ export default {
     ...mapActions({
       closePopup: "Popup/closeWidgetManagerConfig",
       toggleWidgetParent: "WidgetManager/toggleWidgetParent",
-      saveCurrentWidgetListForSession:
-        "WidgetManager/saveCurrentWidgetListForSession",
+      saveCurrentWidgetListToSession:
+        "WidgetManager/saveCurrentWidgetListToSession",
       initWidget: "WidgetManager/initWidget",
     }),
   },

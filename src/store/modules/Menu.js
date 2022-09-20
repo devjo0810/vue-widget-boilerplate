@@ -21,6 +21,23 @@ const sampleMenuList = [
     compoName: "TextEllipsisTitleTest",
     isOnlyOne: true,
   },
+  {
+    parentMenuId: "0",
+    menuId: "1",
+    sortSqnc: 1,
+    title: "사용자 관리",
+    compoName: null,
+    isMenu: false,
+    menuList: [
+      {
+        parentMenuId: "1",
+        menuId: "101",
+        title: "사용자 추가",
+        compoName: "AddUser",
+        isMenu: true,
+      },
+    ],
+  },
 ];
 
 const state = {

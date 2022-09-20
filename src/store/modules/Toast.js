@@ -9,6 +9,7 @@ import { createKey } from "@/utils/util";
  */
 const state = {
   toastList: [],
+  timeout: TOAST.TIMEOUT,
 };
 
 const getters = {
@@ -31,16 +32,16 @@ const mutations = {
 
 const actions = {
   // 토스트메세지 생성
-  createToast({ commit }, { message, type }) {
+  createToast({ state, commit }, { message, type }) {
     commit("addToast", { message, type });
-    delToastTimeoutAfter(commit); // 삭제예약
+    delToastTimeout(commit, state.timeout); // 삭제예약
   },
 };
 
-function delToastTimeoutAfter(commit) {
+function delToastTimeout(commit, timeout) {
   setTimeout(() => {
     commit("delToast");
-  }, TOAST.TIMEOUT);
+  }, timeout);
 }
 
 export default {

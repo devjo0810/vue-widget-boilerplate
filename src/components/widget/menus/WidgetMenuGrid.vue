@@ -5,8 +5,5 @@
 <script>
 export default {
   name: "WidgetMenuGrid",
-  mounted() {
-    this.$toast.danger("WidgetMenuGrid");
-  },
 };
 </script>
