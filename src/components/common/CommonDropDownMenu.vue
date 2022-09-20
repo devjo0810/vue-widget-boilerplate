@@ -1,9 +1,10 @@
 <template>
+  <!-- <li class="common-drop-down-menu" @click="$emit('click')"> -->
   <li
     class="common-drop-down-menu"
     @mouseover="show = true"
     @mouseleave="show = false"
-    @click="$emit('click')"
+    @click="$emit('click', options)"
   >
     <span>{{ options.title }}</span>
     <ul v-if="subMenuShow" :class="subMenuWrapperClass">

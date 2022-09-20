@@ -6,8 +6,8 @@
         v-for="(item, i) in widgetMenuList"
         :key="i"
         :options="item"
-        :subMenuWrapperClass="'nav-sub-menu'"
-        @click="handleMenuClick(item)"
+        :subMenuWrapperClass="'nav-sub-menu-wrapper'"
+        @click="handleMenuClick"
       />
     </ul>
     <section class="right-section">
@@ -47,6 +47,8 @@ export default {
 <style lang="scss">
 .main-header {
   @include flex-between;
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: map-get($main-layout, "header-height");
   padding: 0 3vw;
@@ -63,15 +65,31 @@ export default {
     height: 100%;
     .nav-menu {
       @include flex-center;
-      @include overflow-ellipsis;
       position: relative;
       height: 100%;
       width: 120px;
       cursor: pointer;
       padding: 0 5px;
       transition: $transition;
+      > span {
+        @include overflow-ellipsis;
+      }
       &:hover {
         background-color: map-get($colors, "black-lighten2");
+      }
+      .nav-sub-menu-wrapper {
+        cursor: pointer;
+        position: absolute;
+        top: map-get($main-layout, "header-height") - 3px;
+        left: 0;
+        margin: 0;
+        padding: 10px 0;
+        background-color: map-get($colors, "white-darken2");
+        color: map-get($colors, "black-lighten2");
+        min-width: 120px;
+        li {
+          padding: 5px;
+        }
       }
     }
   }

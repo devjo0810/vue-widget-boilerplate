@@ -35,6 +35,20 @@ const sampleMenuList = [
         compoName: "AddUser",
         isMenu: true,
       },
+      {
+        parentMenuId: "1",
+        menuId: "101",
+        title: "사용자 추가",
+        compoName: "AddUser",
+        isMenu: true,
+      },
+      {
+        parentMenuId: "1",
+        menuId: "101",
+        title: "사용자 추가",
+        compoName: "AddUser",
+        isMenu: true,
+      },
     ],
   },
 ];
