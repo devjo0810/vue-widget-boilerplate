@@ -32,5 +32,8 @@ export default {
   bottom: map-get($widget, "minimize-wrapper-height") + 10px;
   right: 10px;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 </style>

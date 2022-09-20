@@ -29,17 +29,18 @@ export default {
 
 <style lang="scss">
 .toast-item {
-  @include flex-between;
   @include list-margin-bottom(5px);
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-end;
   padding: 10px 17px;
   color: map-get($colors, "white");
   font-size: 1.4rem;
-  width: 260px;
   .icon {
     font-size: 1.9rem;
     margin-right: 8px;
   }
-  &.primary {
+  &.ok {
     background-color: map-get($colors, "point");
   }
   &.info {

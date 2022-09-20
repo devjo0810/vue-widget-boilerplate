@@ -97,6 +97,7 @@ export default {
       this.$widget.spinner.on(this.compoId);
       setTimeout(() => {
         this.$widget.spinner.off(this.compoId);
+        this.$toast.ok("회원가입되었습니다.");
       }, 3000);
     },
     reset() {

@@ -7,9 +7,9 @@ export default {
       add(type, message) {
         store.dispatch("Toast/createToast", { type, message });
       },
-      primary(message) {
+      ok(message) {
         store.dispatch("Toast/createToast", {
-          type: TOAST.TYPE.PRIMARY,
+          type: TOAST.TYPE.OK,
           message,
         });
       },
