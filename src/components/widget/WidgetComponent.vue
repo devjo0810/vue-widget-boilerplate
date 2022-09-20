@@ -49,7 +49,7 @@ import { WIDGET } from "@/config";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "WidgetWrapper",
+  name: "WidgetComponent",
   components: {
     VueDraggableResizable,
     WidgetHeader,

@@ -1,6 +1,6 @@
 <template>
   <div class="widget-manager" ref="widgetManager">
-    <WidgetCompo
+    <WidgetComponent
       v-for="widget in widgetList"
       :key="widget.id"
       v-bind="widget"
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import WidgetCompo from "./WidgetCompo";
+import WidgetComponent from "./WidgetComponent";
 import { mapGetters } from "vuex";
 
 export default {
   name: "WidgetManager",
   components: {
-    WidgetCompo,
+    WidgetComponent,
   },
   computed: {
     ...mapGetters({
