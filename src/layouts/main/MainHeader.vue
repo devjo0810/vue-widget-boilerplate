@@ -1,14 +1,14 @@
 <template>
   <header class="main-header">
     <ul class="left-section">
-      <li
+      <CommonDropDownMenu
         class="nav-menu"
         v-for="(item, i) in widgetMenuList"
         :key="i"
-        @click="createWidget(item)"
-      >
-        <span>{{ item.title }}</span>
-      </li>
+        :options="item"
+        :subMenuWrapperClass="'nav-sub-menu'"
+        @click="handleMenuClick(item)"
+      />
     </ul>
     <section class="right-section">
       <button title="위젯설정" @click="openWidgetManagerConfigPopup">
@@ -19,10 +19,14 @@
 </template>
 
 <script>
+import CommonDropDownMenu from "@/components/common/CommonDropDownMenu";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "MainHeader",
+  components: {
+    CommonDropDownMenu,
+  },
   computed: {
     ...mapGetters({
       widgetMenuList: "Menu/getWidgetMenuList",
@@ -30,11 +34,11 @@ export default {
   },
   methods: {
     ...mapActions({
-      createWidgetAction: "WidgetManager/createWidget",
+      createWidget: "WidgetManager/createWidget",
       openWidgetManagerConfigPopup: "Popup/openWidgetManagerConfig",
     }),
-    createWidget(item) {
-      this.createWidgetAction(item);
+    handleMenuClick(item) {
+      this.createWidget(item);
     },
   },
 };

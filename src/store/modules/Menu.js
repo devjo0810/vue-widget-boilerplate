@@ -14,7 +14,6 @@ const sampleMenuList = [
   {
     title: "Card",
     compoName: "Card",
-    spinner: true,
   },
   {
     title: "TextEllipsisTitleTest_ABCDE",
