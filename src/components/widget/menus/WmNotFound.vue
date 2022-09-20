@@ -12,7 +12,7 @@ import { mapGetters } from "vuex";
 
 export default {
   extends: Base,
-  name: "WidgetMenuNotFound",
+  name: "WmNotFound",
   computed: {
     ...mapGetters({
       widgetList: "WidgetManager/getWidgetList",

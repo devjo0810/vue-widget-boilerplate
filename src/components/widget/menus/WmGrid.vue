@@ -10,6 +10,6 @@
 import Base from "./BaseComponent.vue";
 export default {
   extends: Base,
-  name: "WidgetMenuGrid",
+  name: "WmGrid",
 };
 </script>

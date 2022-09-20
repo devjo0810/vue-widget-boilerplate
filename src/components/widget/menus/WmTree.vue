@@ -1,9 +1,9 @@
 <template>
-  <div>WidgetMenuLoading</div>
+  <div>WidgetMenuTree</div>
 </template>
 
 <script>
 export default {
-  name: "WidgetMenuLoading",
+  name: "WmTree",
 };
 </script>

@@ -21,7 +21,7 @@ const WIDGET = {
   MIN_HEIGHT: 300,
   DRAG_HANDLE: ".widget-drag-handle",
   HEADER_HEIGHT: 36, // 32 + border
-  MENU_PREFIX: "WidgetMenu",
+  MENU_PREFIX: "Wm",
 };
 
 const DIALOG_TYPE = {

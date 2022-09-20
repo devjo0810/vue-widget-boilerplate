@@ -57,7 +57,7 @@ import { mapGetters } from "vuex";
 
 export default {
   extends: Base,
-  name: "WidgetMenuSignup",
+  name: "WmSignup",
   components: {
     CommonTextButton,
     CommonInputBox,

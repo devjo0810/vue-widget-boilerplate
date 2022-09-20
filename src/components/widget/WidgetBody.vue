@@ -13,7 +13,7 @@
 
 <script>
 import { WIDGET } from "@/config";
-import NotFound from "./menus/WidgetMenuNotFound";
+import NotFound from "./menus/WmNotFound";
 
 export default {
   name: "WidgetBody",
