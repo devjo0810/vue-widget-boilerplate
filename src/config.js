@@ -51,4 +51,19 @@ const TOAST = {
   },
 };
 
-export { debug, APP, API_CONFIG, HTTP_STATUS, WIDGET, DIALOG_TYPE, TOAST };
+const TUI_GRID = {
+  ROW_HEIGHT: 30,
+  MIN_ROW_HEIGHT: 30,
+  HEADER: { height: 30 },
+};
+
+export {
+  debug,
+  APP,
+  API_CONFIG,
+  HTTP_STATUS,
+  WIDGET,
+  DIALOG_TYPE,
+  TOAST,
+  TUI_GRID,
+};

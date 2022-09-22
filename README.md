@@ -7,6 +7,7 @@
 
 * [Features](#features)
 * [Project setup](#project-setup)
+* [Widget Menu Snippet](#widget-menu-snippet)
 
 ### Features
 
@@ -14,7 +15,9 @@
   * vue-draggable-resizable@2.3.0
   * @fortawesome/fontawesome-svg-core@6.2.0
   * @fortawesome/free-solid-svg-icons@6.2.0
-  * @fortawesome/vue-fontawesome@2.0.8 
+  * @fortawesome/vue-fontawesome@2.0.8
+  * @toast-ui/vue-grid@4.21.4
+  * tui-date-picker@4.3.1
 * 위젯 드래그 및 리사이징
 * 동적 컴포넌트 로딩
 
@@ -51,7 +54,7 @@ npm run lint
 
 ---
 
-### Widget Menu Snippet
+## Widget Menu Snippet
 ```json
 "Vue Widget Template": {
   "prefix": "widget",

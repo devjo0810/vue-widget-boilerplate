@@ -7,6 +7,8 @@ import "vue-draggable-resizable/dist/VueDraggableResizable.css";
 import widgetHandler from "./widget-handler";
 /* toast-handler */
 import toastHandler from "./toast-handler";
+/* TOAST UI Grid */
+import "./tui-grid";
 
 Vue.use(widgetHandler);
 Vue.use(toastHandler);

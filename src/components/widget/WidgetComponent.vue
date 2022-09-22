@@ -124,7 +124,7 @@ export default {
   data: () => ({
     widgetMinWidth: WIDGET.MIN_WIDTH,
     widgetMinHeight: WIDGET.MIN_HEIGHT,
-    widgetActive: false,
+    widgetActive: true,
   }),
   computed: {
     ...mapGetters({
@@ -154,11 +154,11 @@ export default {
       updateWidgetSidePositionAction: "WidgetManager/updateWidgetSidePosition",
     }),
     handleWidgetHeaderClick() {
-      this.handleWidgetActive(true);
+      // this.handleWidgetActive(true);
       this.sortWidgetZindexAction(this.id);
     },
     handleWidgetBodyClick() {
-      this.handleWidgetActive(true);
+      // this.handleWidgetActive(true);
       this.sortWidgetZindexAction(this.id);
     },
     handleWidgetBodyReady(w, h) {

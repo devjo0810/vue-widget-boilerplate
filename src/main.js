@@ -1,6 +1,6 @@
 import Vue from "vue";
-import "./assets/scss/main.scss";
 import "./plugins/main";
+import "./assets/scss/main.scss";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
