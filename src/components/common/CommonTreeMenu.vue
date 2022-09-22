@@ -1,15 +1,15 @@
 <template>
-  <li
-    class="common-tree-menu"
-    @mouseover="show = true"
-    @mouseleave="show = false"
-  >
-    <span>{{ options.title }}</span>
+  <li class="common-tree-menu" @click.stop="handleClick(options)">
+    <span class="title">{{ options.title }}</span>
+    <span class="right-icon" v-if="subMenuShow"
+      ><font-awesome-icon icon="caret-right"
+    /></span>
     <ul v-if="subMenuShow">
       <common-tree-menu
         v-for="(subMenu, i) in options.menuList"
         :key="i"
-        :options="subMenu.options"
+        :options="subMenu"
+        @click="handleClick"
       />
     </ul>
   </li>
@@ -23,16 +23,26 @@ export default {
   },
   computed: {
     subMenuShow() {
-      const { show, options } = this;
-      if (show && options.menuList) {
+      const { options } = this;
+      if (options.menuList && options.menuList) {
         return true;
       } else {
         return false;
       }
     },
   },
-  data: () => ({
-    show: false,
-  }),
+  methods: {
+    handleClick(menu) {
+      this.$emit("click", menu);
+    },
+  },
 };
 </script>
+
+<style lang="scss">
+.common-tree-menu {
+  .right-icon {
+    margin-left: 5px;
+  }
+}
+</style>
