@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkwidget_boilerplate"]=self["webpackChunkwidget_boilerplate"]||[]).push([[973],{5973:function(e,t,i){i.r(t),i.d(t,{default:function(){return s}});var n=function(){var e=this,t=e._self._c;return t("div",[t("p",[e._v("WidgetMenuGrid")]),t("WidgetSpinner",{attrs:{id:e.compoId}}),t("WidgetDialog",{attrs:{id:e.compoId}})],1)},d=[],l=i(9167),r={extends:l["default"],name:"WmGrid"},u=r,a=i(3736),o=(0,a.Z)(u,n,d,!1,null,null,null),s=o.exports}}]);
-//# sourceMappingURL=973.d9064a05.js.map
