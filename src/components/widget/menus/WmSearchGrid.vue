@@ -1,6 +1,6 @@
 <template>
-  <div class="wm-grid">
-    <div class="header">검색영역</div>
+  <div class="wm-search-grid">
+    <div class="header"><SearchArea v-bind="searchAreaProps" /></div>
     <div class="body">
       <TuiGrid ref="grid" v-bind="gridProps" />
     </div>
@@ -11,15 +11,17 @@
 
 <script>
 import Base from "./BaseComponent.vue";
+import SearchArea from "@/components/search/SearchArea";
 import { Grid as TuiGrid } from "@toast-ui/vue-grid";
 import { TUI_GRID } from "@/config";
 import { mapGetters } from "vuex";
 
 export default {
   extends: Base,
-  name: "WmGrid",
+  name: "WmSearchGrid",
   components: {
     TuiGrid,
+    SearchArea,
   },
   computed: {
     ...mapGetters({
@@ -39,10 +41,35 @@ export default {
     widgetSizeReset: "gridAutoResizing",
   },
   data: () => ({
+    searchAreaProps: {
+      colCount: 8,
+      rows: [
+        [
+          {
+            label: "테스트1",
+            type: "text",
+            searchKey: "text1",
+            value: "text1",
+          },
+          {
+            label: "테스트2",
+            colspan: "3",
+            type: "text",
+            searchKey: "text2",
+            value: "text2",
+          },
+          {
+            label: "테스트3",
+            type: "date",
+            searchKey: "date1",
+            value: "",
+          },
+        ],
+      ],
+    },
     gridProps: {
       ...TUI_GRID.default(),
       bodyHeight: "fitToParent",
-      // bodyHeight: 500,
       columns: [
         {
           header: "Name",
@@ -92,7 +119,7 @@ export default {
 </script>
 
 <style lang="scss">
-.wm-grid {
+.wm-search-grid {
   padding: 10px;
   height: 100%;
   .header {

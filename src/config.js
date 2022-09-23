@@ -68,6 +68,19 @@ const TUI_GRID = {
   },
 };
 
+const SEARCH = {
+  TYPE: {
+    DATE: "date",
+    TEXT: "text",
+    SELECT: "select",
+  },
+};
+SEARCH.COMPO_NAME = {
+  [SEARCH.TYPE.DATE]: "SearchDateBox",
+  [SEARCH.TYPE.TEXT]: "SearchTextBox",
+  [SEARCH.TYPE.SELECT]: "SearchSelectBox",
+};
+
 export {
   debug,
   APP,
@@ -77,4 +90,5 @@ export {
   DIALOG_TYPE,
   TOAST,
   TUI_GRID,
+  SEARCH,
 };
