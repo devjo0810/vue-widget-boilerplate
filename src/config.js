@@ -36,25 +36,36 @@ const TOAST = {
     INFO: 2,
     WARNING: 3,
     DANGER: 4,
-    CLASS: {
-      1: "ok",
-      2: "info",
-      3: "warning",
-      4: "danger",
-    },
-    ICON: {
-      1: "circle-check",
-      2: "circle-info",
-      3: "triangle-exclamation",
-      4: "circle-xmark",
-    },
   },
+};
+TOAST.CLASS = {
+  [TOAST.TYPE.OK]: "ok",
+  [TOAST.TYPE.INFO]: "info",
+  [TOAST.TYPE.WARNING]: "warning",
+  [TOAST.TYPE.DANGER]: "danger",
+};
+TOAST.ICON = {
+  [TOAST.TYPE.OK]: "circle-check",
+  [TOAST.TYPE.INFO]: "circle-info",
+  [TOAST.TYPE.WARNING]: "triangle-exclamation",
+  [TOAST.TYPE.DANGER]: "circle-xmark",
 };
 
 const TUI_GRID = {
   ROW_HEIGHT: 30,
   MIN_ROW_HEIGHT: 30,
   HEADER: { height: 30 },
+  ROW_HEADERS: ["rowNum"],
+  COLUMN_OPTIONS: { resizable: true, minWidth: 70 },
+  default() {
+    return {
+      rowHeight: this.ROW_HEIGHT,
+      minRowHeight: this.MIN_ROW_HEIGHT,
+      header: this.HEADER,
+      rowHeaders: this.ROW_HEADERS,
+      columnOptions: this.COLUMN_OPTIONS,
+    };
+  },
 };
 
 export {

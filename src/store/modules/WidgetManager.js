@@ -18,6 +18,7 @@
  * isMinimize : 최소화 여부
  * isWindowPopup : 윈도우 팝업 여부
  * isAutoSize : 자동크기 여부
+ * sizeReset : 위젯사이즈변경 카운트
  * spinner : spinner on/off
  * dialog : dialog open/close
  *        : { show, type, title, message, callback: Promise }
@@ -88,6 +89,7 @@ const mutations = {
         message: null,
         callback: null,
       },
+      sizeReset: 0,
       id: createKey(),
       zindex: getNextZindex(state),
       x: state.widgetPosition.x,
@@ -204,6 +206,7 @@ const actions = {
       x: 0,
       y: 0,
     });
+    dispatch("incrementSizeReset", id);
   },
   // 위젯 창화면
   async smallSizingWidget({ state, commit, dispatch }, id) {
@@ -217,6 +220,7 @@ const actions = {
       h: bfH,
     });
     await commit("setWidget", { id, x: bfX, y: bfY });
+    dispatch("incrementSizeReset", id);
   },
   // 위젯 위치 업데이트
   updateWidgetPosition({ commit, dispatch }, { id, x, y }) {
@@ -246,6 +250,7 @@ const actions = {
       h,
     });
     await commit("setWidget", { id, x, y });
+    dispatch("incrementSizeReset", id);
   },
   // 위젯 최소화
   minimizingWidget({ commit }, id) {
@@ -328,6 +333,11 @@ const actions = {
   saveCurrentWidgetListToSession({ state }) {
     const widgetListString = JSON.stringify(state.widgetList);
     sessionStorage.setItem("widgetList", widgetListString);
+  },
+  // 위젯 sizeReset 증가
+  incrementSizeReset({ state, commit }, id) {
+    const widget = state.widgetList.find((item) => item.id === id);
+    commit("setWidget", { id, sizeReset: widget.sizeReset + 1 });
   },
 };
 

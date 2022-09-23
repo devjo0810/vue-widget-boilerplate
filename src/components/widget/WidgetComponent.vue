@@ -19,6 +19,7 @@
     :resizable="!isFullSize"
     @dragging="handleDragging"
     @resizing="handleResizing"
+    @resizestop="handleResizingStop"
   >
     <WidgetHeader
       :title="title"
@@ -152,6 +153,7 @@ export default {
         "WidgetManager/updateWidgetSizeAndPosition",
       minimizingWidgetAction: "WidgetManager/minimizingWidget",
       updateWidgetSidePositionAction: "WidgetManager/updateWidgetSidePosition",
+      incrementSizeReset: "WidgetManager/incrementSizeReset",
     }),
     handleWidgetHeaderClick() {
       // this.handleWidgetActive(true);
@@ -197,6 +199,9 @@ export default {
     handleResizing(x, y, w, h) {
       const params = { id: this.id, x, y, w, h };
       this.updateWidgetSizeAndPositionAction(params);
+    },
+    handleResizingStop() {
+      this.incrementSizeReset(this.id);
     },
     handleLeftSideWidget() {
       const params = {

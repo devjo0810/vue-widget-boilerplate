@@ -17,11 +17,11 @@ export default {
   computed: {
     typeClass() {
       const type = this.type;
-      return TOAST.TYPE.CLASS[type];
+      return TOAST.CLASS[type];
     },
     typeIcon() {
       const type = this.type;
-      return TOAST.TYPE.ICON[type];
+      return TOAST.ICON[type];
     },
   },
 };

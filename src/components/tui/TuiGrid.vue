@@ -1,9 +1,12 @@
 <template>
   <Grid
+    ref="grid"
     :rowHeight="rowHeight"
     :minRowHeight="minRowHeight"
     :header="header"
-    v-bind="gridProps"
+    :rowHeaders="rowHeaders"
+    :columns="columns"
+    :data="data"
   />
 </template>
 
@@ -29,9 +32,21 @@ export default {
       type: Object,
       default: () => TUI_GRID.HEADER,
     },
-    gridProps: {
-      type: Object,
-      required: true,
+    rowHeaders: {
+      type: Array,
+      default: () => TUI_GRID.ROW_HEADERS,
+    },
+    columns: Array,
+    datas: Array,
+    bodyHeight: Number,
+    // gridProps: {
+    //   type: Object,
+    //   required: true,
+    // },
+  },
+  computed: {
+    gridInstance() {
+      return this.$refs.grid.gridInstance;
     },
   },
 };

@@ -74,9 +74,28 @@ const sampleMenuList = [
     isWidget: true,
   },
   {
-    title: "Grid",
-    compoName: "Grid",
-    isWidget: true,
+    parentMenuId: "0",
+    menuId: "2",
+    sortSqnc: 2,
+    title: "그리드 샘플",
+    compoName: null,
+    isWidget: false,
+    menuList: [
+      {
+        parentMenuId: "2",
+        menuId: "201",
+        title: "그리드 조회",
+        compoName: "SearchGrid",
+        isWidget: true,
+      },
+      {
+        parentMenuId: "2",
+        menuId: "202",
+        title: "그리드 수정",
+        compoName: "UpdateGrid",
+        isWidget: true,
+      },
+    ],
   },
   {
     title: "Tree",
