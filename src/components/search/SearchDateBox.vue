@@ -1,11 +1,15 @@
 <template>
-  <!-- <div ref="dateBox"></div> -->
   <div>
     <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-      <input type="text" :id="key" aria-label="Date-Time" />
+      <input
+        :id="inputKey"
+        ref="dateInput"
+        type="text"
+        aria-label="Date-Time"
+      />
       <span class="tui-ico-date" />
     </div>
-    <div ref="dateBox" style="margin-top: -1px" />
+    <div :id="wrapperKey" ref="dateWrapper" style="margin-top: -1px" />
   </div>
 </template>
 
@@ -15,19 +19,24 @@ import DatePicker from "tui-date-picker";
 export default {
   name: "SearchDateBox",
   data: () => ({
-    key: "datepicker_" + new Date().getDate(),
+    inputKey: "datepicker_input_" + new Date().getDate(),
+    wrapperKey: "datepicker_wrapper_" + new Date().getDate(),
   }),
   mounted() {
-    console.log(DatePicker);
-    console.log(this.$refs.dateBox);
     const vm = this;
-    new DatePicker(this.$refs.dateBox, {
+    new DatePicker(this.$refs.dateWrapper, {
       language: "ko",
       input: {
-        element: vm.key,
+        element: vm.$refs.dateInput,
         format: "yyyy-MM-dd",
       },
     });
   },
 };
 </script>
+
+<style lang="scss">
+.tui-datepicker {
+  z-index: 1;
+}
+</style>
