@@ -18,19 +18,32 @@ import DatePicker from "tui-date-picker";
 
 export default {
   name: "SearchDateBox",
+  props: ["value", "format"],
   data: () => ({
     inputKey: "datepicker_input_" + new Date().getDate(),
     wrapperKey: "datepicker_wrapper_" + new Date().getDate(),
+    instance: null,
   }),
   mounted() {
     const vm = this;
-    new DatePicker(this.$refs.dateWrapper, {
+    const datePickerInstance = new DatePicker(this.$refs.dateWrapper, {
       language: "ko",
+      date: vm.value,
       input: {
         element: vm.$refs.dateInput,
-        format: "yyyy-MM-dd",
+        format: vm.format || "yyyy-MM-dd",
       },
     });
+
+    datePickerInstance.on("change", vm.handleChange);
+    this.instance = datePickerInstance;
+    this.handleChange();
+  },
+  methods: {
+    handleChange() {
+      console.log("handleChange", this.instance.getDate());
+      this.$emit("change", this.instance.getDate());
+    },
   },
 };
 </script>

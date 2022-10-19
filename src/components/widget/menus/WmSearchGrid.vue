@@ -1,6 +1,9 @@
 <template>
   <div class="wm-search-grid">
-    <div class="header"><SearchArea v-bind="searchAreaProps" /></div>
+    <button @click="getSearchData">search data</button>
+    <div class="header">
+      <SearchArea v-bind="searchAreaProps" ref="searchArea" />
+    </div>
     <div class="body">
       <TuiGrid ref="grid" v-bind="gridProps" />
     </div>
@@ -35,6 +38,9 @@ export default {
     gridInstance() {
       const grid = this.$refs.grid;
       return grid.gridInstance;
+    },
+    searchData() {
+      return this.$refs.searchArea.searchData;
     },
   },
   watch: {
@@ -113,6 +119,9 @@ export default {
   methods: {
     gridAutoResizing() {
       this.gridInstance.refreshLayout();
+    },
+    getSearchData() {
+      console.log("getSearchData", this.searchData);
     },
   },
 };

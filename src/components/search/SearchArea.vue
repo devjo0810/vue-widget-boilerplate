@@ -24,8 +24,8 @@
               <component
                 :is="componentName[col.type]"
                 :value="col.value"
-                @input="handleInput(col.searchKey)"
-                @change="handleInput(col.searchKey)"
+                @input="(e) => handleInput(col.searchKey, e)"
+                @change="(e) => handleInput(col.searchKey, e)"
               />
             </td>
           </template>
@@ -71,9 +71,9 @@ export default {
     searchData: {},
   }),
   methods: {
-    handleInput: (e) => (searchKey) => {
+    handleInput(searchKey, e) {
       console.log("handleInput", searchKey, e);
-      this.searchData[searchKey] = "asdf";
+      this.searchData[searchKey] = e;
       this.$emit("input");
     },
   },
