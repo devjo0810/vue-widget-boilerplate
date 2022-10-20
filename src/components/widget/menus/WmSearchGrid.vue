@@ -1,6 +1,6 @@
 <template>
   <div class="wm-search-grid">
-    <button @click="getSearchData">search data</button>
+    <!-- <button @click="getSearchData">search data</button> -->
     <div class="header">
       <SearchArea v-bind="searchAreaProps" ref="searchArea" />
     </div>
@@ -46,76 +46,94 @@ export default {
   watch: {
     widgetSizeReset: "gridAutoResizing",
   },
-  data: () => ({
-    searchAreaProps: {
-      colCount: 8,
-      rows: [
-        [
+  data() {
+    const vm = this;
+    return {
+      searchAreaProps: {
+        colCount: 8,
+        rows: [
+          [
+            {
+              label: "이름",
+              components: [
+                {
+                  type: "text",
+                  searchKey: "name",
+                  value: "",
+                  placeholder: "이름을 입력하세요...",
+                },
+              ],
+            },
+            {
+              label: "아티스트",
+              components: [
+                {
+                  type: "text",
+                  searchKey: "artist",
+                  value: "",
+                  placeholder: "아티스트를 입력하세요...",
+                },
+              ],
+            },
+            {
+              label: "등록일자",
+              components: [
+                {
+                  type: "date",
+                  searchKey: "regDt",
+                  value: "2022-10-01",
+                },
+              ],
+            },
+            {
+              colspan: 2,
+              class: "taR",
+              components: [
+                {
+                  type: "button",
+                  color: "primary",
+                  label: "조회",
+                  click: vm.getSearchData,
+                },
+                {
+                  type: "button",
+                  label: "초기화",
+                  click: vm.getSearchData,
+                },
+              ],
+            },
+          ],
+        ],
+      },
+      gridProps: {
+        ...TUI_GRID.default(),
+        bodyHeight: "fitToParent",
+        columns: [
+          { header: "Name", name: "name" },
+          { header: "Artist", name: "artist" },
+          { header: "menuId", name: "menuId" },
+          { header: "sortSqnc", name: "sortSqnc" },
+          { header: "title", name: "title" },
+        ],
+        data: [
           {
-            label: "테스트1",
-            type: "text",
-            searchKey: "text1",
-            value: "text1",
+            name: "Beautiful Lies",
+            artist: "Birdy",
+            menuId: "1",
+            sortSqnc: 1,
+            title: "사용자관리",
           },
           {
-            label: "테스트2",
-            colspan: "3",
-            type: "text",
-            searchKey: "text2",
-            value: "text2",
-          },
-          {
-            label: "테스트3",
-            type: "date",
-            searchKey: "date1",
-            value: "",
+            name: "X",
+            artist: "Ed Sheeran",
+            menuId: "2",
+            sortSqnc: 2,
+            title: "사용자추가",
           },
         ],
-      ],
-    },
-    gridProps: {
-      ...TUI_GRID.default(),
-      bodyHeight: "fitToParent",
-      columns: [
-        {
-          header: "Name",
-          name: "name",
-        },
-        {
-          header: "Artist",
-          name: "artist",
-        },
-        {
-          header: "menuId",
-          name: "menuId",
-        },
-        {
-          header: "sortSqnc",
-          name: "sortSqnc",
-        },
-        {
-          header: "title",
-          name: "title",
-        },
-      ],
-      data: [
-        {
-          name: "Beautiful Lies",
-          artist: "Birdy",
-          menuId: "1",
-          sortSqnc: 1,
-          title: "사용자관리",
-        },
-        {
-          name: "X",
-          artist: "Ed Sheeran",
-          menuId: "2",
-          sortSqnc: 2,
-          title: "사용자추가",
-        },
-      ],
-    },
-  }),
+      },
+    };
+  },
   methods: {
     gridAutoResizing() {
       this.gridInstance.refreshLayout();
@@ -132,10 +150,10 @@ export default {
   padding: 10px;
   height: 100%;
   .header {
-    height: 26px;
+    // height: 26px;
   }
   .body {
-    height: calc(100% - 26px);
+    // height: calc(100% - 26px);
   }
 }
 </style>

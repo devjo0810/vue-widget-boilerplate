@@ -18,6 +18,7 @@
   * @fortawesome/vue-fontawesome@2.0.8
   * @toast-ui/vue-grid@4.21.4
   * tui-date-picker@4.3.1
+  * dayjs@1.11.5
 * 위젯 드래그 및 리사이징
 * 동적 컴포넌트 로딩
 

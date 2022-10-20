@@ -68,17 +68,23 @@ const TUI_GRID = {
   },
 };
 
+const TUI_TO_DAYJS = {
+  "yyyy-MM-dd": "YYYY-MM-DD",
+};
+
 const SEARCH = {
   TYPE: {
     DATE: "date",
     TEXT: "text",
     SELECT: "select",
+    BUTTON: "button",
   },
 };
 SEARCH.COMPO_NAME = {
   [SEARCH.TYPE.DATE]: "SearchDateBox",
   [SEARCH.TYPE.TEXT]: "SearchTextBox",
   [SEARCH.TYPE.SELECT]: "SearchSelectBox",
+  [SEARCH.TYPE.BUTTON]: "CommonTextButton",
 };
 
 export {
@@ -90,5 +96,6 @@ export {
   DIALOG_TYPE,
   TOAST,
   TUI_GRID,
+  TUI_TO_DAYJS,
   SEARCH,
 };
