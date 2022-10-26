@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
-      <input ref="dateInput" type="text" aria-label="Date-Time" />
-      <span class="tui-ico-date" />
-    </div>
+  <div class="tui-datepicker-input tui-datetime-input tui-has-focus">
+    <input ref="dateInput" type="text" aria-label="Date-Time" />
+    <span class="tui-ico-date" />
     <div ref="dateWrapper" style="margin-top: -1px" />
   </div>
 </template>
@@ -25,6 +23,9 @@ export default {
   data: () => ({
     instance: null,
   }),
+  watch: {
+    value: "valueChange",
+  },
   mounted() {
     const vm = this;
     const datePickerInstance = new DatePicker(vm.$refs.dateWrapper, {
@@ -43,7 +44,14 @@ export default {
   methods: {
     handleChange() {
       const date = this.instance.getDate();
-      this.$emit("change", dayjs(date).format(TUI_TO_DAYJS[this.format]));
+      this.$emit("input", dayjs(date).format(TUI_TO_DAYJS[this.format]));
+    },
+    valueChange(v) {
+      if (v) {
+        this.instance.setDate(new Date(v));
+      } else {
+        this.instance.setNull();
+      }
     },
   },
 };

@@ -28,6 +28,7 @@ export default {
   }
   &.primary {
     background-color: #00adb5;
+    border-color: #00adb5;
     color: #eeeeee;
     &:hover {
       background-color: #009198;

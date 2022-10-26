@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     ready() {
-      console.log("ready", this.bodyScrollWidth, this.bodyScrollHeight);
+      // console.log("ready", this.bodyScrollWidth, this.bodyScrollHeight);
       this.$emit(
         "widgetBodyReady",
         this.bodyScrollWidth,

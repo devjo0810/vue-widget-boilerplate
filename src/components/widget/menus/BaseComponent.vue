@@ -21,7 +21,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.$options.name + " mounted");
+    // console.log(this.$options.name + " mounted");
     this.$emit("mounted");
   },
 };

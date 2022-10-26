@@ -68,3 +68,74 @@ p {
 li {
   list-style: none;
 }
+
+// search-area component reset
+.search-area {
+
+  // btn-area
+  .btn-area {
+    @include flex-end;
+
+    .common-text-button {
+      @include list-margin-right(5px);
+      height: 28px;
+      padding: 0 10px;
+      font-weight: 500;
+    }
+  }
+
+  // vue2-datepicker reset
+  .mx-datepicker {
+    display: block;
+    width: auto;
+
+    .mx-input-wrapper {
+      .mx-input {
+        height: 28px;
+        border: 1px solid map-get($colors, "white-darken2");
+        font-size: 1.2rem;
+        padding: 0 5px;
+
+        &:focus {
+          border-color: map-get($colors, "point");
+          border-width: 1px;
+        }
+      }
+    }
+  }
+
+  // vue-select
+  .v-select {
+    font-size: 1.2rem;
+
+    .vs__dropdown-toggle {
+      border-radius: 0;
+      border: 1px solid map-get($colors, "white-darken2");
+      height: 28px;
+
+      &[aria-expanded=true] {
+        border-color: map-get($colors, "point");
+        border-width: 1px;
+      }
+
+      .vs__search {
+        height: 18px;
+        font-size: 1.2rem;
+      }
+
+      .vs__actions {
+
+        button,
+        svg {
+          fill: map-get($colors, "white-darken2");
+        }
+      }
+    }
+
+    .vs__dropdown-menu {
+      .vs__dropdown-option--highlight {
+        background: map-get($colors, "point");
+      }
+    }
+  }
+}

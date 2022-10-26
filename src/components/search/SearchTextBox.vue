@@ -28,9 +28,10 @@ export default {
     height: 100%;
     border: 1px solid #aaaaaa;
     padding: 0 5px;
+    font-size: 1.2rem;
     &:focus {
       border-color: #00adb5;
-      border-width: 2px;
+      border-width: 1px;
     }
   }
 }
