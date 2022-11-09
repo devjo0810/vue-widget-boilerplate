@@ -137,10 +137,22 @@ const actions = {
       Vue.toast.danger(`${title} 메뉴에 등록된 위젯 컴포넌트가 없습니다.`);
       return;
     }
-    // onlyOne 옵션이 있는 컴포넌트일 경우 기존 위젯 종료후 생성
-    checkOnlyOneWidget(isOnlyOne, compoName, state, dispatch);
+    if (isOnlyOne) {
+      const widget = state.widgetList.find(
+        (item) => item.compoName === compoName
+      );
+      if (widget) {
+        // dispatch("closeWidget", widget.id);
+        dispatch("sortWidgetZindex", widget.id);
+        Vue.toast.warning(`${title} 이미 활성화된 위젯입니다.`);
+        return;
+      }
+    }
     commit("addWidget", { title, compoName, compoData, isOnlyOne });
     commit("setNextWidgetPosition");
+    // onlyOne 옵션이 있는 컴포넌트일 경우 기존 위젯 종료후 생성 >> 기능 변경
+    // 이미 존재하는 위젯에 포커싱 처리 후 토스트 메세징 처리
+    // checkOnlyOneWidget(isOnlyOne, compoName, state, dispatch);
   },
   // 위젯 zindex값 정렬
   sortWidgetZindex({ state, commit }, id) {
@@ -372,16 +384,17 @@ function loadSessionWidgetList() {
 }
 
 // 위젯 1개 유지여부 체크
-function checkOnlyOneWidget(isOnlyOne, compoName, state, dispatch) {
-  if (isOnlyOne) {
-    const widget = state.widgetList.find(
-      (item) => item.compoName === compoName
-    );
-    if (widget) {
-      dispatch("closeWidget", widget.id);
-    }
-  }
-}
+// function checkOnlyOneWidget(isOnlyOne, compoName, state, dispatch) {
+//   if (isOnlyOne) {
+//     const widget = state.widgetList.find(
+//       (item) => item.compoName === compoName
+//     );
+//     if (widget) {
+//       // dispatch("closeWidget", widget.id);
+//       dispatch("sortWidgetZindex", widget.id);
+//     }
+//   }
+// }
 
 export default {
   namespaced: true,
